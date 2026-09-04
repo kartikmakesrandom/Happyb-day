@@ -198,43 +198,6 @@ body {
     overflow: hidden;
 }
 
-/* Mobile Guide Box */
-.guide-box {
-    position: absolute;
-    bottom: 75px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 500;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    background: rgba(16, 8, 23, 0.88);
-    border: 1px solid rgba(212, 180, 106, 0.3);
-    padding: 8px 16px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-    width: 90%;
-    max-width: 320px;
-    pointer-events: none;
-    text-align: center;
-}
-
-.guide-box-header {
-    font-family: "Cinzel", serif;
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: #d4b46a;
-    font-weight: 600;
-}
-
-.guide-box-line {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 11.5px;
-    color: #b99554;
-}
-
 /* Atmosphere Elements */
 .magic-glow {
     position: absolute;
@@ -312,7 +275,6 @@ body {
     align-items: center;
     gap: 15px;
     z-index: 10;
-    margin-bottom: 50px;
 }
 
 .book-scene {
@@ -644,12 +606,6 @@ body {
 </audio>
 
 <div class="stage">
-    <!-- Bottom Guide Box for Mobile -->
-    <div class="guide-box">
-        <div class="guide-box-header"><span>✦</span> Practical Notebook Guide</div>
-        <div class="guide-box-line">Swipe turn • Pinch 2 fingers to zoom & drag</div>
-    </div>
-
     <!-- Atmosphere -->
     <div class="magic-glow"></div>
     <div class="candle-light"></div>
