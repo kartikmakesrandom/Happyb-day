@@ -6,7 +6,6 @@
 
 <title>The Chamber of Shared Spells</title>
 
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
@@ -198,43 +197,6 @@ body {
     overflow: hidden;
 }
 
-/* Mobile Guide Box */
-.guide-box {
-    position: absolute;
-    bottom: 75px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 500;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    background: rgba(16, 8, 23, 0.88);
-    border: 1px solid rgba(212, 180, 106, 0.3);
-    padding: 8px 16px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-    width: 90%;
-    max-width: 320px;
-    pointer-events: none;
-    text-align: center;
-}
-
-.guide-box-header {
-    font-family: "Cinzel", serif;
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: #d4b46a;
-    font-weight: 600;
-}
-
-.guide-box-line {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 11.5px;
-    color: #b99554;
-}
-
 /* Atmosphere Elements */
 .magic-glow {
     position: absolute;
@@ -312,7 +274,6 @@ body {
     align-items: center;
     gap: 15px;
     z-index: 10;
-    margin-bottom: 50px;
 }
 
 .book-scene {
@@ -609,7 +570,6 @@ body {
 
 <body>
 
-<!-- Welcome Overlay -->
 <div id="welcomeOverlay" class="welcome-overlay">
     <div class="welcome-box">
         <div class="welcome-symbol">✦</div>
@@ -622,10 +582,8 @@ body {
     </div>
 </div>
 
-<!-- Info Instructions Button -->
 <button class="info-btn" id="infoBtn" title="Navigation Guide">ℹ️</button>
 
-<!-- Instructions Modal -->
 <div class="info-modal" id="infoModal">
     <div class="info-modal-content">
         <button class="info-modal-close" id="infoClose">✕</button>
@@ -638,25 +596,16 @@ body {
     </div>
 </div>
 
-<!-- Local Audio Player -->
 <audio id="bgAudio" loop preload="auto">
     <source src="background-music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="stage">
-    <!-- Bottom Guide Box for Mobile -->
-    <div class="guide-box">
-        <div class="guide-box-header"><span>✦</span> Practical Notebook Guide</div>
-        <div class="guide-box-line">Swipe turn • Pinch 2 fingers to zoom & drag</div>
-    </div>
-
-    <!-- Atmosphere -->
     <div class="magic-glow"></div>
     <div class="candle-light"></div>
     <div class="floor-shadow"></div>
     <div class="dust" id="dust"></div>
 
-    <!-- Book & Control Wrapper -->
     <div class="book-container-wrapper">
         <div class="book-scene" id="bookScene">
             <div class="zoom-wrapper" id="zoomWrapper">
@@ -664,7 +613,6 @@ body {
                     <div class="page-block"></div>
                     <div class="spine"></div>
 
-                    <!-- SHEET 0: Front Cover (Right) & Blank Left -->
                     <div class="sheet" id="sheet0">
                         <div class="front-cover fade-text">
                             <div class="cover-inner">
@@ -683,7 +631,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 1: Blank Left | Chapter I (Right) -->
                     <div class="sheet" id="sheet1">
                         <div class="face">
                             <div class="chapter fade-text">
@@ -699,7 +646,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 2: Blank Left | Chapter II (Right) -->
                     <div class="sheet" id="sheet2">
                         <div class="face">
                             <div class="chapter fade-text">
@@ -715,7 +661,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 3: Blank Left | Chapter III (Right) -->
                     <div class="sheet" id="sheet3">
                         <div class="face">
                             <div class="chapter fade-text">
@@ -731,7 +676,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 4: Blank Left | Chapter IV (Right) -->
                     <div class="sheet" id="sheet4">
                         <div class="face">
                             <div class="chapter fade-text">
@@ -747,7 +691,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 5: Blank Left | Chapter V (Right) -->
                     <div class="sheet" id="sheet5">
                         <div class="face">
                             <div class="chapter fade-text">
@@ -763,7 +706,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 6: Blank Left | Chapter VI (Right) -->
                     <div class="sheet" id="sheet6">
                         <div class="face">
                             <div class="chapter fade-text">
@@ -779,7 +721,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 7: Blank Left | Chapter VII (Right) -->
                     <div class="sheet" id="sheet7">
                         <div class="face">
                             <div class="chapter fade-text">
@@ -795,7 +736,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 8: Blank Left | Hint Section Part I (Right) -->
                     <div class="sheet" id="sheet8">
                         <div class="face">
                             <div class="chapter fade-text" style="text-align: left;">
@@ -813,7 +753,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 9: Blank Left | Hint Section Part II (Right) -->
                     <div class="sheet" id="sheet9">
                         <div class="face">
                             <div class="chapter fade-text" style="text-align: left;">
@@ -830,7 +769,6 @@ body {
                         <div class="face back"></div>
                     </div>
 
-                    <!-- SHEET 10: Blank Left | Epilogue (Right) -->
                     <div class="sheet" id="sheet10">
                         <div class="face">
                             <div class="chapter fade-text">
@@ -863,7 +801,6 @@ body {
             </div>
         </div>
 
-        <!-- Control Panel -->
         <div class="control-panel">
             <button class="nav-btn" id="prevBtn" title="Previous Page">◀</button>
             <button class="nav-btn" id="nextBtn" title="Next Page">▶</button>
@@ -881,225 +818,4 @@ welcomeOverlay.addEventListener("click", function() {
         console.log("Audio playback prevented:", error);
     });
 
-    welcomeOverlay.classList.add("fade-out");
-    setTimeout(() => {
-        welcomeOverlay.remove();
-    }, 800);
-});
-
-// Instructions Modal Logic
-const infoBtn = document.getElementById("infoBtn");
-const infoModal = document.getElementById("infoModal");
-const infoClose = document.getElementById("infoClose");
-
-infoBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    infoModal.classList.add("active");
-});
-
-infoClose.addEventListener("click", () => {
-    infoModal.classList.remove("active");
-});
-
-infoModal.addEventListener("click", (e) => {
-    if (e.target === infoModal) {
-        infoModal.classList.remove("active");
-    }
-});
-
-const book = document.getElementById("book");
-const bookScene = document.getElementById("bookScene");
-const zoomWrapper = document.getElementById("zoomWrapper");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-const sheets = [
-    document.getElementById("sheet0"),
-    document.getElementById("sheet1"),
-    document.getElementById("sheet2"),
-    document.getElementById("sheet3"),
-    document.getElementById("sheet4"),
-    document.getElementById("sheet5"),
-    document.getElementById("sheet6"),
-    document.getElementById("sheet7"),
-    document.getElementById("sheet8"),
-    document.getElementById("sheet9"),
-    document.getElementById("sheet10")
-];
-
-const totalPages = sheets.length;
-let state = 0;
-
-function updateBookTransform() {
-    let translateX = 0;
-    if (state === 0) {
-        translateX = 10;   // Adjusted further left for starting closed book
-    } else if (state === totalPages) {
-        translateX = 310;  // Adjusted further right for ending closed book
-    } else {
-        translateX = 0;    // Open book stays centered
-    }
-    book.style.transform = `translateX(${translateX}px) rotateX(6deg) rotateY(-3deg)`;
-}
-
-function updateControls() {
-    prevBtn.disabled = state <= 0;
-    nextBtn.disabled = state >= totalPages;
-}
-
-function updateBook() {
-    sheets.forEach((sheet, index) => {
-        const opened = index < state;
-        sheet.style.transform = opened ? "rotateY(-180deg)" : "rotateY(0deg)";
-        if (opened) {
-            sheet.style.zIndex = index + 1;
-        } else {
-            sheet.style.zIndex = totalPages - index + 10;
-        }
-    });
-
-    if (state === totalPages) {
-        book.classList.add("at-end");
-    } else {
-        book.classList.remove("at-end");
-    }
-
-    updateBookTransform();
-    updateControls();
-
-    document.querySelectorAll('.chapter, .front-cover, .cover-inner').forEach(el => {
-        el.classList.remove('fade-text');
-        void el.offsetWidth;
-        el.classList.add('fade-text');
-    });
-}
-
-updateBook();
-
-// Touch & Pinch-Zoom / Pan Variables
-let scale = 1;
-let panX = 0;
-let panY = 0;
-let initialDistance = 0;
-let initialScale = 1;
-let startMidX = 0;
-let startMidY = 0;
-let startPanX = 0;
-let startPanY = 0;
-let touchStartX = 0;
-let touchEndX = 0;
-
-function getDistance(t1, t2) {
-    return Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
-}
-
-function getMidpoint(t1, t2) {
-    return {
-        x: (t1.clientX + t2.clientX) / 2,
-        y: (t1.clientY + t2.clientY) / 2
-    };
-}
-
-function updateZoomTransform() {
-    zoomWrapper.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
-}
-
-bookScene.addEventListener("touchstart", function(event) {
-    if (event.touches.length === 2) {
-        initialDistance = getDistance(event.touches[0], event.touches[1]);
-        initialScale = scale;
-        const mid = getMidpoint(event.touches[0], event.touches[1]);
-        startMidX = mid.x;
-        startMidY = mid.y;
-        startPanX = panX;
-        startPanY = panY;
-    } else if (event.touches.length === 1 && scale === 1) {
-        touchStartX = event.changedTouches[0].screenX;
-    }
-}, { passive: true });
-
-bookScene.addEventListener("touchmove", function(event) {
-    if (event.touches.length === 2) {
-        const currentDist = getDistance(event.touches[0], event.touches[1]);
-        if (initialDistance > 0) {
-            scale = Math.min(Math.max(initialScale * (currentDist / initialDistance), 1), 3);
-        }
-        
-        const mid = getMidpoint(event.touches[0], event.touches[1]);
-        panX = startPanX + (mid.x - startMidX);
-        panY = startPanY + (mid.y - startMidY);
-
-        updateZoomTransform();
-    }
-}, { passive: true });
-
-bookScene.addEventListener("touchend", function(event) {
-    if (event.touches.length < 2 && scale === 1) {
-        touchEndX = event.changedTouches[0].screenX;
-        handleSwipe();
-    }
-    if (event.touches.length === 0 && scale === 1) {
-        panX = 0;
-        panY = 0;
-        updateZoomTransform();
-    }
-}, { passive: true });
-
-function handleSwipe() {
-    const swipeThreshold = 40;
-    if (touchEndX < touchStartX - swipeThreshold) {
-        if (state < totalPages) {
-            state++;
-            updateBook();
-        }
-    }
-    if (touchEndX > touchStartX + swipeThreshold) {
-        if (state > 0) {
-            state--;
-            updateBook();
-        }
-    }
-}
-
-bookScene.addEventListener("click", function(event) {
-    if (scale > 1) return;
-    const bookRect = book.getBoundingClientRect();
-    const bookCenter = bookRect.left + bookRect.width / 2;
-    
-    if (event.clientX >= bookCenter) {
-        if (state < totalPages) { state++; updateBook(); }
-    } else {
-        if (state > 0) { state--; updateBook(); }
-    }
-});
-
-nextBtn.addEventListener("click", function(event) {
-    event.stopPropagation();
-    if (state < totalPages) { state++; updateBook(); }
-});
-
-prevBtn.addEventListener("click", function(event) {
-    event.stopPropagation();
-    if (state > 0) { state--; updateBook(); }
-});
-
-const dust = document.getElementById("dust");
-for (let i = 0; i < 35; i++) {
-    const particle = document.createElement("div");
-    particle.className = "dust-particle";
-    particle.style.left = Math.random() * 100 + "%";
-    particle.style.top = (50 + Math.random() * 50) + "%";
-    particle.style.animationDuration = (6 + Math.random() * 10) + "s";
-    particle.style.animationDelay = (-Math.random() * 12) + "s";
-    particle.style.opacity = 0.2 + Math.random() * 0.5;
-    const size = 1 + Math.random() * 2;
-    particle.style.width = size + "px";
-    particle.style.height = size + "px";
-    dust.appendChild(particle);
-}
-
-bookScene.addEventListener("contextmenu", event => event.preventDefault());
-</script>
-
-</body>
-</html>
+    welcomeOverlay.classList.add("fade
