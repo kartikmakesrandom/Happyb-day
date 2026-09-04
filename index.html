@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>The Chamber of Shared Spells</title>
 
@@ -16,15 +16,17 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    position: fixed; /* Prevents elastic bounce scrolling on mobile */
 }
 
 body {
-    overflow: hidden;
     background: radial-gradient(ellipse at 50% 42%, #1a0d26 0%, #0c0512 38%, #040206 72%, #010002 100%);
     color: #e7d4a2;
     font-family: "Cormorant Garamond", serif;
@@ -52,35 +54,35 @@ body {
 
 .welcome-box {
     text-align: center;
-    max-width: 450px;
-    padding: 40px 30px;
+    max-width: 400px;
+    width: 100%;
+    padding: 35px 25px;
     background: linear-gradient(145deg, #17100b 0%, #2b180d 50%, #120b08 100%);
     border: 2px solid rgba(212, 180, 106, 0.4);
     border-radius: 12px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 25px rgba(207, 164, 74, 0.15);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(207, 164, 74, 0.15);
 }
 
 .welcome-symbol {
     font-family: "Cinzel Decorative", serif;
-    font-size: 28px;
+    font-size: 26px;
     color: #cda85b;
-    margin-bottom: 15px;
-    text-shadow: 0 0 10px rgba(221, 177, 86, 0.4);
+    margin-bottom: 12px;
 }
 
 .welcome-title {
     font-family: "Cinzel Decorative", "Cinzel", serif;
-    font-size: 24px;
-    letter-spacing: 2px;
+    font-size: 22px;
+    letter-spacing: 1px;
     color: #d4b46a;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 0 #5d421d, 0 0 8px rgba(216, 175, 91, 0.35);
+    margin-bottom: 12px;
+    text-shadow: 1px 1px 0 #5d421d;
 }
 
 .welcome-text {
     font-family: "Cormorant Garamond", serif;
-    font-size: 19px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.5;
     color: #e7d4a2;
 }
 
@@ -98,109 +100,89 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    perspective: 1600px;
-    perspective-origin: 50% 43%;
+    perspective: 1400px;
     overflow: hidden;
 }
 
-/* Guide Box */
+/* Mobile Guide Box */
 .guide-box {
     position: absolute;
-    bottom: 25px;
-    left: 25px;
+    bottom: 75px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 500;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    background: rgba(16, 8, 23, 0.85);
-    border: 1px solid rgba(212, 180, 106, 0.25);
-    padding: 12px 14px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    align-items: center;
+    gap: 3px;
+    background: rgba(16, 8, 23, 0.88);
+    border: 1px solid rgba(212, 180, 106, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(6px);
-    max-width: 260px;
+    width: 90%;
+    max-width: 320px;
     pointer-events: none;
+    text-align: center;
 }
 
 .guide-box-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
     font-family: "Cinzel", serif;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 1px;
     color: #d4b46a;
     font-weight: 600;
-    margin-bottom: 2px;
 }
 
 .guide-box-line {
     font-family: "Cormorant Garamond", serif;
-    font-size: 13px;
-    line-height: 1.35;
+    font-size: 12px;
     color: #b99554;
 }
 
-.guide-box-keyboard {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 12px;
-    font-style: italic;
-    color: #f7e0a8;
-    margin-top: 4px;
-}
-
-/* Atmosphere */
+/* Atmosphere Elements */
 .magic-glow {
     position: absolute;
-    width: 650px;
-    height: 650px;
+    width: 450px;
+    height: 450px;
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(130, 75, 190, 0.13) 0%, rgba(90, 45, 150, 0.07) 30%, transparent 70%);
-    filter: blur(12px);
+    background: radial-gradient(circle, rgba(130, 75, 190, 0.12) 0%, transparent 70%);
+    filter: blur(10px);
     pointer-events: none;
 }
 
 .candle-light {
     position: absolute;
-    width: 520px;
-    height: 520px;
+    width: 350px;
+    height: 350px;
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 183, 75, 0.10) 0%, rgba(255, 144, 40, 0.055) 25%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 183, 75, 0.09) 0%, transparent 70%);
     filter: blur(10px);
-    animation: candleFlicker 4s infinite ease-in-out;
     pointer-events: none;
-}
-
-@keyframes candleFlicker {
-    0%, 100% { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
-    25% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.04); }
-    50% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.97); }
-    75% { opacity: 0.85; transform: translate(-50%, -50%) scale(1.02); }
 }
 
 .floor-shadow {
     position: absolute;
-    width: 570px;
-    height: 130px;
+    width: 320px;
+    height: 80px;
     left: 50%;
-    top: calc(50% + 270px);
+    top: calc(50% + 220px);
     transform: translateX(-50%) rotateX(70deg);
     border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.85), transparent 70%);
-    filter: blur(12px);
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.8), transparent 70%);
+    filter: blur(10px);
     pointer-events: none;
 }
 
-/* Dust & Debris */
 .dust {
     position: absolute;
     inset: 0;
-    overflow: hidden;
     pointer-events: none;
     z-index: 100;
 }
@@ -211,52 +193,22 @@ body {
     height: 2px;
     border-radius: 50%;
     background: rgba(214, 181, 115, 0.5);
-    box-shadow: 0 0 5px rgba(214, 181, 115, 0.45);
     animation: dustFloat linear infinite;
 }
 
 @keyframes dustFloat {
-    from { transform: translate3d(0, 30px, 0) scale(0.7); opacity: 0; }
-    15% { opacity: 0.8; }
-    80% { opacity: 0.5; }
-    to { transform: translate3d(30px, -100vh, 0) scale(1.2); opacity: 0; }
+    from { transform: translateY(20px); opacity: 0; }
+    50% { opacity: 0.7; }
+    to { transform: translateY(-100vh); opacity: 0; }
 }
-
-/* Ancient Forest Elements */
-.leaf-fragment {
-    position: absolute;
-    background: linear-gradient(135deg, #3d2b18 0%, #1f150a 100%);
-    opacity: 0.75;
-    pointer-events: none;
-    z-index: 12;
-    box-shadow: 1px 2px 4px rgba(0,0,0,0.5);
-    border-radius: 70% 10% 70% 10%;
-}
-
-.leaf-1 { bottom: 30px; right: 40px; transform: rotate(42deg) scale(1.2); width: 18px; height: 9px; background: #4a331c; }
-.leaf-2 { top: 35px; left: 45px; transform: rotate(-55deg) scale(0.9); width: 22px; height: 10px; background: #332212; }
-.leaf-3 { bottom: 45px; left: 35px; transform: rotate(18deg); width: 15px; height: 7px; background: #52391d; }
-.leaf-4 { top: 45px; right: 50px; transform: rotate(-25deg); width: 17px; height: 8px; background: #3d2a15; border-radius: 30% 70% 50% 50%; }
-
-.twig {
-    position: absolute;
-    pointer-events: none;
-    z-index: 11;
-    opacity: 0.7;
-    filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.4));
-}
-
-.twig-1 { bottom: 20px; left: 25%; transform: rotate(-12deg); width: 90px; height: 35px; }
-.twig-2 { top: 25px; right: 20%; transform: rotate(35deg) scaleX(-1); width: 80px; height: 30px; }
-.twig-3 { bottom: 35px; right: 25%; transform: rotate(145deg); width: 70px; height: 25px; }
 
 @keyframes textFadeIn {
-    0% { opacity: 0; transform: translateY(12px); }
+    0% { opacity: 0; transform: translateY(8px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
 .fade-text {
-    animation: textFadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: textFadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 /* Book Container & Scene */
@@ -264,39 +216,34 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     z-index: 10;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .book-scene {
     position: relative;
-    width: calc(var(--book-w) + 100px);
-    height: calc(var(--book-h) + 60px);
+    width: calc(var(--book-w) + 40px);
+    height: calc(var(--book-h) + 20px);
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 1600px;
-    perspective-origin: 50% 43%;
+    perspective: 1400px;
     overflow: visible;
-    cursor: grab;
     user-select: none;
-}
-
-.book-scene:active {
-    cursor: grabbing;
+    touch-action: pan-y;
 }
 
 /* Control Panel */
 .control-panel {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: rgba(18, 10, 26, 0.85);
-    border: 1px solid rgba(212, 180, 106, 0.35);
-    padding: 6px 14px;
+    gap: 15px;
+    background: rgba(18, 10, 26, 0.9);
+    border: 1px solid rgba(212, 180, 106, 0.4);
+    padding: 8px 18px;
     border-radius: 30px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
     z-index: 500;
 }
@@ -306,86 +253,48 @@ body {
     border: 1px solid #d4b46a;
     color: #f1dfbd;
     font-family: "Cinzel", serif;
-    font-size: 11px;
-    width: 32px;
-    height: 32px;
+    font-size: 13px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.nav-btn:hover {
-    background: linear-gradient(135deg, #573a1c, #301d0e);
-    color: #fff;
-    border-color: #f7e0a8;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(186, 136, 48, 0.3);
+.nav-btn:active {
+    transform: scale(0.92);
 }
 
 .nav-btn:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+    opacity: 0.3;
     border-color: rgba(212, 180, 106, 0.2);
 }
 
 /* Book Elements */
 .book {
-    --book-w: 420px;
-    --book-h: 560px;
+    --book-w: 320px;
+    --book-h: 430px;
     position: relative;
     width: var(--book-w);
     height: var(--book-h);
     transform-style: preserve-3d;
-    transform: rotateX(13deg) rotateY(-7deg) translateY(-12px);
+    transform: rotateX(6deg) rotateY(-3deg);
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    overflow: visible;
 }
-
-.book::after, .book::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 35px;
-    height: 100%;
-    pointer-events: none;
-    z-index: 300;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    opacity: 0;
-}
-
-.book::before {
-    left: 0;
-    background: linear-gradient(90deg, rgba(243, 215, 142, 0.28), transparent);
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-}
-
-.book::after {
-    right: 0;
-    background: linear-gradient(270deg, rgba(243, 215, 142, 0.28), transparent);
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-}
-
-.book.hover-left::before { opacity: 1; transform: translateX(-4px); }
-.book.hover-right::after { opacity: 1; transform: translateX(4px); }
 
 .page-block {
     position: absolute;
-    left: 13px;
-    top: 8px;
-    width: calc(var(--book-w) - 18px);
-    height: calc(var(--book-h) - 16px);
+    left: 10px;
+    top: 6px;
+    width: calc(var(--book-w) - 14px);
+    height: calc(var(--book-h) - 12px);
     background: repeating-linear-gradient(0deg, rgba(70, 45, 20, 0.12) 0px, rgba(70, 45, 20, 0.12) 1px, transparent 1px, transparent 4px), linear-gradient(90deg, #b89f72, #e0cb9e 4%, #b59b6c 96%, #826a45);
     border-radius: 4px 8px 8px 4px;
-    box-shadow: 5px 5px 0 #3b2714, 8px 8px 15px rgba(0, 0, 0, 0.6);
-    transform: translateZ(-14px);
+    box-shadow: 4px 4px 0 #3b2714, 6px 6px 12px rgba(0, 0, 0, 0.5);
+    transform: translateZ(-12px);
     z-index: 1;
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -393,19 +302,18 @@ body {
 .book.at-end .page-block {
     opacity: 0;
     pointer-events: none;
-    transform: translateZ(-14px) scale(0.98);
 }
 
 .spine {
     position: absolute;
-    left: -8px;
+    left: -6px;
     top: -2px;
-    width: 30px;
+    width: 24px;
     height: calc(var(--book-h) + 4px);
-    border-radius: 9px 0 0 9px;
+    border-radius: 8px 0 0 8px;
     background: linear-gradient(90deg, #070504, #26160d 25%, #5a3218 50%, #24140c 75%, #080504);
-    box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.7), 4px 0 8px rgba(0, 0, 0, 0.45);
-    transform: translateZ(12px);
+    box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.7), 3px 0 6px rgba(0, 0, 0, 0.4);
+    transform: translateZ(10px);
     z-index: 200;
     pointer-events: none;
 }
@@ -418,7 +326,6 @@ body {
     transform-origin: left center;
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    will-change: transform;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 10;
 }
@@ -431,20 +338,19 @@ body {
     height: 100%;
     overflow: hidden;
     backface-visibility: hidden;
-    border-radius: 3px 9px 9px 3px;
+    border-radius: 3px 8px 8px 3px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px 35px;
+    padding: 20px 22px;
     text-align: center;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(95, 63, 29, 0.18) 0%, transparent 18%),
-        radial-gradient(circle at 80% 70%, rgba(82, 51, 22, 0.15) 0%, transparent 22%),
-        radial-gradient(ellipse at center, rgba(245, 230, 195, 0.65) 0%, rgba(153, 122, 80, 0.35) 85%, rgba(94, 70, 42, 0.7) 100%),
+        radial-gradient(circle at 20% 30%, rgba(95, 63, 29, 0.15) 0%, transparent 18%),
+        radial-gradient(ellipse at center, rgba(245, 230, 195, 0.7) 0%, rgba(153, 122, 80, 0.4) 85%, rgba(94, 70, 42, 0.7) 100%),
         repeating-linear-gradient(0deg, rgba(74, 48, 20, 0.05) 0px, rgba(74, 48, 20, 0.05) 1px, transparent 1px, transparent 6px),
         linear-gradient(90deg, #ad9263, #e3cd9e 8%, #d9c293 90%, #997c4d);
     color: #2e2012;
-    box-shadow: inset 0 0 35px rgba(54, 33, 12, 0.4), 3px 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 25px rgba(54, 33, 12, 0.35);
 }
 
 .face::after {
@@ -452,7 +358,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 8px;
+    width: 6px;
     height: 100%;
     background: repeating-linear-gradient(0deg, #786139 0px, #ebdcb6 3px, #8c7344 6px);
     opacity: 0.85;
@@ -460,48 +366,42 @@ body {
 
 .back {
     transform: rotateY(180deg);
-    background: 
-        radial-gradient(circle at 70% 35%, rgba(95, 63, 29, 0.16) 0%, transparent 16%),
-        radial-gradient(ellipse at center, rgba(245, 230, 195, 0.65) 0%, rgba(153, 122, 80, 0.35) 85%, rgba(94, 70, 42, 0.7) 100%),
-        repeating-linear-gradient(0deg, rgba(74, 48, 20, 0.05) 0px, rgba(74, 48, 20, 0.05) 1px, transparent 1px, transparent 6px),
-        linear-gradient(90deg, #9e8354, #d9c293 8%, #d9c293 90%, #8c7144);
 }
 
 .chapter {
     width: 100%;
-    max-width: 340px;
+    max-width: 270px;
     z-index: 15;
 }
 
 .chapter-label {
     font-family: "Cinzel", serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    margin-bottom: 6px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
     color: #59421f;
 }
 
 .chapter h2 {
     font-family: "Cinzel Decorative", serif;
-    font-size: 19px;
+    font-size: 16px;
     line-height: 1.2;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: #382411;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.2);
 }
 
 .chapter p {
     font-family: "IM Fell English", serif;
-    font-size: 15px;
-    line-height: 1.45;
+    font-size: 13.5px;
+    line-height: 1.4;
     color: #3b2a18;
 }
 
 .ornament {
-    margin: 8px 0;
-    font-size: 15px;
+    margin: 6px 0;
+    font-size: 13px;
     color: #6e5227;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
 }
 
 /* Covers */
@@ -509,36 +409,34 @@ body {
     position: absolute;
     inset: 0;
     background: radial-gradient(ellipse at 50% 40%, rgba(115, 70, 25, 0.20), transparent 55%), linear-gradient(145deg, #17100b 0%, #2b180d 34%, #120b08 73%, #070403 100%);
-    border-radius: 7px 12px 12px 7px;
-    border: 3px solid #100a06;
-    box-shadow: inset 0 0 0 2px rgba(207, 164, 74, 0.16), inset 0 0 35px rgba(0, 0, 0, 0.92), 10px 15px 35px rgba(0, 0, 0, 0.65), 0 0 14px rgba(186, 136, 48, 0.08);
+    border-radius: 6px 10px 10px 6px;
+    border: 2px solid #100a06;
+    box-shadow: inset 0 0 0 1px rgba(207, 164, 74, 0.16), inset 0 0 25px rgba(0, 0, 0, 0.9), 6px 10px 25px rgba(0, 0, 0, 0.6);
     backface-visibility: hidden;
 }
 
 .front-cover::before {
     content: "";
     position: absolute;
-    inset: 10px;
-    border: 1px solid rgba(205, 164, 80, 0.5);
+    inset: 8px;
+    border: 1px solid rgba(205, 164, 80, 0.4);
     border-radius: 4px;
-    box-shadow: inset 0 0 12px rgba(196, 151, 67, 0.08), 0 0 5px rgba(196, 151, 67, 0.08);
 }
 
 .cover-inner {
     position: absolute;
-    inset: 22px;
+    inset: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(205, 164, 83, 0.28);
+    border: 1px solid rgba(205, 164, 83, 0.25);
     border-radius: 3px;
     background: radial-gradient(circle at center, rgba(120, 76, 27, 0.13), transparent 70%);
-    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8);
 }
 
 .cover-border {
-    width: 82%;
-    height: 84%;
+    width: 85%;
+    height: 86%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -546,41 +444,37 @@ body {
     text-align: center;
     border: 1px solid rgba(207, 166, 80, 0.5);
     outline: 1px solid rgba(207, 166, 80, 0.12);
-    outline-offset: 6px;
-    box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.75), 0 0 10px rgba(194, 145, 52, 0.08);
+    outline-offset: 4px;
 }
 
 .cover-symbol {
     font-family: "Cinzel Decorative", serif;
-    font-size: 34px;
+    font-size: 28px;
     color: #cda85b;
-    margin-bottom: 24px;
-    text-shadow: 0 0 5px rgba(221, 177, 86, 0.4), 0 0 18px rgba(180, 120, 35, 0.2);
+    margin-bottom: 16px;
 }
 
 .cover-title {
     font-family: "Cinzel Decorative", "Cinzel", serif;
-    font-size: 26px;
-    line-height: 1.45;
-    letter-spacing: 2px;
+    font-size: 20px;
+    line-height: 1.35;
+    letter-spacing: 1.5px;
     color: #d4b46a;
-    text-shadow: 1px 1px 0 #5d421d, 0 0 5px rgba(216, 175, 91, 0.35), 0 2px 12px rgba(0, 0, 0, 0.9);
+    text-shadow: 1px 1px 0 #5d421d;
 }
 
 .cover-subtitle {
-    margin-top: 22px;
+    margin-top: 14px;
     font-family: "Cormorant Garamond", serif;
-    font-size: 20px;
+    font-size: 16px;
     font-style: italic;
-    letter-spacing: 1.5px;
     color: #b99554;
-    text-shadow: 0 1px 3px #000;
 }
 
 .cover-divider {
-    margin-top: 25px;
-    font-size: 14px;
-    letter-spacing: 8px;
+    margin-top: 16px;
+    font-size: 12px;
+    letter-spacing: 6px;
     color: #a98445;
 }
 
@@ -588,9 +482,9 @@ body {
     position: absolute;
     inset: 0;
     background: radial-gradient(ellipse at center, rgba(112, 68, 27, 0.18), transparent 60%), linear-gradient(145deg, #1a0f09, #29160d 45%, #0c0705);
-    border-radius: 12px 7px 7px 12px;
-    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8), -10px 15px 35px rgba(0, 0, 0, 0.65);
-    border: 3px solid #100a06;
+    border-radius: 10px 6px 6px 10px;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8), -6px 10px 25px rgba(0, 0, 0, 0.6);
+    border: 2px solid #100a06;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -598,29 +492,36 @@ body {
 
 .back-quote {
     font-family: "Cinzel Decorative", serif;
-    font-size: 20px;
-    line-height: 1.5;
-    letter-spacing: 1.5px;
+    font-size: 17px;
+    line-height: 1.45;
+    letter-spacing: 1px;
     color: #d4b46a;
-    text-shadow: 1px 1px 0 #5d421d, 0 0 8px rgba(216, 175, 91, 0.4), 0 2px 12px rgba(0, 0, 0, 0.9);
-    padding: 0 15px;
+    text-shadow: 1px 1px 0 #5d421d;
+    padding: 0 10px;
 }
 
-@media (max-width: 700px) {
-    .book { --book-w: 300px; --book-h: 400px; }
-    .cover-title { font-size: 19px; }
-    .cover-symbol { font-size: 25px; margin-bottom: 15px; }
-    .back-quote { font-size: 17px; }
-    .cover-subtitle { font-size: 15px; }
-    .chapter h2 { font-size: 16px; }
-    .chapter p { font-size: 13.5px; }
-    .face { padding: 25px 20px; }
-    .guide-box { display: none; }
+/* Leaf fragments scaled down for mobile */
+.leaf-fragment {
+    position: absolute;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 12;
+    border-radius: 70% 10% 70% 10%;
 }
+.leaf-1 { bottom: 15px; right: 20px; transform: rotate(42deg) scale(0.8); width: 15px; height: 7px; background: #4a331c; }
+.leaf-2 { top: 15px; left: 25px; transform: rotate(-55deg) scale(0.7); width: 18px; height: 8px; background: #332212; }
+.leaf-3 { bottom: 20px; left: 20px; transform: rotate(18deg) scale(0.8); width: 12px; height: 6px; background: #52391d; }
+.leaf-4 { top: 20px; right: 25px; transform: rotate(-25deg) scale(0.8); width: 14px; height: 7px; background: #3d2a15; }
 
-@media (max-height: 650px) {
-    .book { --book-w: 300px; --book-h: 395px; }
+.twig {
+    position: absolute;
+    pointer-events: none;
+    z-index: 11;
+    opacity: 0.5;
 }
+.twig-1 { bottom: 10px; left: 20%; transform: rotate(-12deg); width: 60px; height: 25px; }
+.twig-2 { top: 15px; right: 15%; transform: rotate(35deg) scaleX(-1); width: 55px; height: 20px; }
+.twig-3 { bottom: 20px; right: 20%; transform: rotate(145deg); width: 50px; height: 20px; }
 </style>
 </head>
 
@@ -633,9 +534,9 @@ body {
         <div class="welcome-title">The Chamber of Shared Spells</div>
         <div class="welcome-text">
             Welcome, Seeker...<br>
-            <strong>Click anywhere</strong> to awaken the music and open the grimoire.
+            <strong>Tap anywhere</strong> to begin your journey.
         </div>
-        <div class="welcome-symbol" style="margin-top: 20px; font-size: 14px; letter-spacing: 6px;">✧ ◆ ✧</div>
+        <div class="welcome-symbol" style="margin-top: 15px; font-size: 13px; letter-spacing: 5px;">✧ ◆ ✧</div>
     </div>
 </div>
 
@@ -645,13 +546,10 @@ body {
 </audio>
 
 <div class="stage">
-    <!-- Bottom-Left Guide Box -->
+    <!-- Bottom Guide Box for Mobile -->
     <div class="guide-box">
         <div class="guide-box-header"><span>✦</span> Navigation Guide</div>
-        <div class="guide-box-line">• Click book sides to turn pages</div>
-        <div class="guide-box-line">• Click & hold book to drag anywhere</div>
-        <div class="guide-box-line">• Zoom via mouse scroll or buttons</div>
-        <div class="guide-box-keyboard">Tip: Keyboard ◄ / ► arrows work too.</div>
+        <div class="guide-box-line">Swipe left / right or use buttons to turn pages</div>
     </div>
 
     <!-- Atmosphere -->
@@ -685,15 +583,12 @@ body {
                     </div>
                     <div class="face back">
                         <div class="leaf-fragment leaf-3"></div>
-                        <svg class="twig twig-3" viewBox="0 0 100 40" fill="none" stroke="#382411" stroke-width="3" stroke-linecap="round">
-                            <path d="M10 30 Q 45 5, 80 28 T 95 10" />
-                        </svg>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER I — THE FIRST SEAL</div>
                             <h2>The Nameless Spark</h2>
                             <div class="ornament">✦ ✧ ✦</div>
                             <p>
-                                What cannot be bought with all the gold of empires, yet is born entirely without a sound? It costs nothing to give away, yet can mean everything to the one who receives it. It becomes no larger by keeping, nor smaller when shared. Kings cannot command it, and wealth cannot purchase it.<br><br>
+                                What cannot be bought with all the gold of empires, yet is born entirely without a sound? It costs nothing to give away, yet can mean everything to the one who receives it. It becomes no larger by keeping, nor smaller when shared.<br><br>
                                 And when given freely, it transforms the air around it into something timeless.
                             </p>
                         </div>
@@ -704,32 +599,25 @@ body {
                 <div class="sheet" id="sheet1">
                     <div class="face">
                         <div class="leaf-fragment leaf-2"></div>
-                        <svg class="twig twig-2" viewBox="0 0 100 40" fill="none" stroke="#2d1c0e" stroke-width="2.5" stroke-linecap="round">
-                            <path d="M5 10 Q 40 35, 75 15 T 95 25" />
-                            <path d="M30 22 Q 20 32, 12 35" />
-                        </svg>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER II — THE SHARED FLAME</div>
                             <h2>The Unseen Echo</h2>
                             <div class="ornament">✧ ◆ ✧</div>
                             <p>
-                                What has no eyes, yet clearly sees another person's hidden pain? What has no ears, yet hears words that were never spoken aloud? It asks no questions when a heart has already answered, and needs no raging storm to understand why someone else is wet.<br><br>
+                                What has no eyes, yet clearly sees another person's hidden pain? What has no ears, yet hears words that were never spoken aloud? It asks no questions when a heart has already answered.<br><br>
                                 For a touch may reach a hand, but this force understands the deepest corners of the heart.
                             </p>
                         </div>
                     </div>
                     <div class="face back">
                         <div class="leaf-fragment leaf-3"></div>
-                        <svg class="twig twig-3" viewBox="0 0 100 40" fill="none" stroke="#382411" stroke-width="3" stroke-linecap="round">
-                            <path d="M10 30 Q 45 5, 80 28 T 95 10" />
-                        </svg>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER III — THE HIDDEN DOOR</div>
                             <h2>The Unshakable Wall</h2>
                             <div class="ornament">✦ ✧ ✦</div>
                             <p>
-                                What protects the soul without ever building stone walls? It cannot be seen with physical eyes, yet it stands taller than any fortress. It does not shout when challenged, nor does it beg strangers to believe in it. The world may question its existence, yet it remains steadfast.<br><br>
-                                Built not from the shifting opinions of others, but from a quiet, unbreakable truth known only within.
+                                What protects the soul without ever building stone walls? It cannot be seen with physical eyes, yet it stands taller than any fortress. It does not shout when challenged, nor does it beg strangers to believe in it.<br><br>
+                                Built not from the shifting opinions of others, but from a quiet, unbreakable truth.
                             </p>
                         </div>
                     </div>
@@ -739,30 +627,24 @@ body {
                 <div class="sheet" id="sheet2">
                     <div class="face">
                         <div class="leaf-fragment leaf-4"></div>
-                        <svg class="twig twig-1" viewBox="0 0 100 40" fill="none" stroke="#332212" stroke-width="2.5" stroke-linecap="round">
-                            <path d="M5 20 Q 50 35, 85 10 T 95 20" />
-                        </svg>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER IV — THE ANCIENT WORDS</div>
                             <h2>The Timeless Mirror</h2>
                             <div class="ornament">✧ ◆ ✧</div>
                             <p>
-                                What remains radiant even when ordinary reflections fade? A mirror can remember a physical face, but it cannot hold onto a soul. Time alters smiles, silence changes voices, and years transform every feature. Yet there is a beauty that grows more profound the longer it is lived.<br><br>
-                                It lingers in how the vulnerable are protected and how gently heavy burdens are carried. A grace no mirror can capture.
+                                What remains radiant even when ordinary reflections fade? A mirror can remember a physical face, but it cannot hold onto a soul. Time alters smiles, silence changes voices, and years transform every feature.<br><br>
+                                Yet there is a beauty that grows more profound the longer it is lived.
                             </p>
                         </div>
                     </div>
                     <div class="face back">
                         <div class="leaf-fragment leaf-1"></div>
-                        <svg class="twig twig-2" viewBox="0 0 100 40" fill="none" stroke="#382411" stroke-width="3" stroke-linecap="round">
-                            <path d="M8 15 Q 38 35, 72 18 T 95 30" />
-                        </svg>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER V — THE GATHERING</div>
                             <h2>The Carved Runes</h2>
                             <div class="ornament">✦ ✧ ✦</div>
                             <p>
-                                What is forged from every mistake you once wished you could erase? From every sudden goodbye you thought would break you, and every hard lesson understood only long after the tears dried? It is not the absence of scars, but the quiet clarity the scars leave behind.<br><br>
+                                What is forged from every mistake you once wished you could erase? From every sudden goodbye you thought would break you, and every hard lesson understood only long after the tears dried?<br><br>
                                 For nothing that hurt you was meant to destroy you—some shadows came only to teach you how to shine.
                             </p>
                         </div>
@@ -773,31 +655,25 @@ body {
                 <div class="sheet" id="sheet3">
                     <div class="face">
                         <div class="leaf-fragment leaf-2"></div>
-                        <svg class="twig twig-3" viewBox="0 0 100 40" fill="none" stroke="#2d1c0e" stroke-width="2.5" stroke-linecap="round">
-                            <path d="M10 25 Q 45 5, 78 25 T 92 12" />
-                        </svg>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER VI — THE SPELLBOOK</div>
                             <h2>The Endless Flame</h2>
                             <div class="ornament">✧ ◆ ✧</div>
                             <p>
-                                What grows infinitely stronger the more it is given away? It cannot be held physically in your hands, yet it can reshape an entire existence. It cannot be spent, yet it enriches everyone it touches. Like a torch that lights another without losing its own fire, it defies all logic.<br><br>
-                                And that is the quiet magic of the grimoire: what you share with others never leaves you empty. It multiplies.
+                                What grows infinitely stronger the more it is given away? It cannot be held physically in your hands, yet it can reshape an entire existence. It cannot be spent, yet it enriches everyone it touches.<br><br>
+                                Like a torch that lights another without losing its own fire, what you share never leaves you empty.
                             </p>
                         </div>
                     </div>
                     <div class="face back">
                         <div class="leaf-fragment leaf-3"></div>
-                        <svg class="twig twig-1" viewBox="0 0 100 40" fill="none" stroke="#332212" stroke-width="3" stroke-linecap="round">
-                            <path d="M5 18 Q 42 35, 75 15 T 95 28" />
-                        </svg>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER VII — THE LAST INCANTATION</div>
                             <h2>The Absolute Anchor</h2>
                             <div class="ornament">✦ ✧ ✦</div>
                             <p>
-                                What makes a traveler completely unstoppable without ever raising a sword? It is not raw muscle, nor is it loud defiance. When shadows fall, it rises knowing more than before. People may doubt, but this force remains quiet, patient, and absolute.<br><br>
-                                Not by arguing with every critic, but by becoming so certain of who you are that the noise of the world simply vanishes.
+                                What makes a traveler completely unstoppable without ever raising a sword? It is not raw muscle, nor is it loud defiance. When shadows fall, it rises knowing more than before.<br><br>
+                                Not by arguing with critics, but by becoming so certain of who you are that noise vanishes.
                             </p>
                         </div>
                     </div>
@@ -807,28 +683,28 @@ body {
                 <div class="sheet" id="sheet4">
                     <div class="face">
                         <div class="leaf-fragment leaf-1"></div>
-                        <div class="chapter fade-text" style="text-align: left; max-width: 330px;">
+                        <div class="chapter fade-text" style="text-align: left;">
                             <div class="chapter-label" style="text-align: center;">HINT SECTION — PART I</div>
-                            <h2 style="font-size: 16px; margin-bottom: 6px; text-align: center;">The Seeker's Clues</h2>
+                            <h2 style="font-size: 14px; margin-bottom: 4px; text-align: center;">The Seeker's Clues</h2>
                             <div class="ornament" style="margin: 2px 0; text-align: center;">✦ ✧ ✦</div>
-                            <ul style="font-family: 'IM Fell English', serif; font-size: 13.5px; line-height: 1.35; padding-left: 15px; color: #3b2a18;">
-                                <li style="margin-bottom: 6px;"><strong>1.</strong> Think of a tiny golden flower whose magic was never meant to belong to just one person.</li>
-                                <li style="margin-bottom: 6px;"><strong>2.</strong> Think of two people beneath a sky filled with thousands of lanterns, each seeing something in the other that words couldn't quite explain.</li>
-                                <li style="margin-bottom: 6px;"><strong>3.</strong> Think of a girl who spent eighteen years behind four walls, while someone else kept telling her what the world was—and what she was.</li>
-                                <li style="margin-bottom: 6px;"><strong>4.</strong> Think beyond the long golden hair, the crown, and the mirror—remember what the kingdom eventually came to recognize in the girl beneath them all.</li>
+                            <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
+                                <li style="margin-bottom: 4px;"><strong>1.</strong> Think of a tiny golden flower whose magic belonged to more than one.</li>
+                                <li style="margin-bottom: 4px;"><strong>2.</strong> Think of two people beneath a sky filled with glowing lanterns.</li>
+                                <li style="margin-bottom: 4px;"><strong>3.</strong> Think of a girl behind four walls discovering the real world.</li>
+                                <li style="margin-bottom: 4px;"><strong>4.</strong> Look beyond the long hair and crown to the girl beneath.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="face back">
                         <div class="leaf-fragment leaf-2"></div>
-                        <div class="chapter fade-text" style="text-align: left; max-width: 330px;">
+                        <div class="chapter fade-text" style="text-align: left;">
                             <div class="chapter-label" style="text-align: center;">HINT SECTION — PART II</div>
-                            <h2 style="font-size: 16px; margin-bottom: 6px; text-align: center;">The Journey Ahead</h2>
+                            <h2 style="font-size: 14px; margin-bottom: 4px; text-align: center;">The Journey Ahead</h2>
                             <div class="ornament" style="margin: 2px 0; text-align: center;">✧ ◆ ✧</div>
-                            <ul style="font-family: 'IM Fell English', serif; font-size: 13.5px; line-height: 1.4; padding-left: 15px; color: #3b2a18;">
-                                <li style="margin-bottom: 8px;"><strong>5.</strong> Think of the road from the tower to the kingdom—every strange encounter, every wrong turn, every little lesson that could never have been learned from a window.</li>
-                                <li style="margin-bottom: 8px;"><strong>6.</strong> Think of a story where the truth about someone's past was hidden for years—until the right pieces finally came together.</li>
-                                <li style="margin-bottom: 8px;"><strong>7.</strong> Think of the moment when a girl finally stopped listening to the voice that had controlled her—and chose the path her own heart had been calling her toward.</li>
+                            <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
+                                <li style="margin-bottom: 6px;"><strong>5.</strong> Think of the road from the tower to the kingdom and every lesson learned.</li>
+                                <li style="margin-bottom: 6px;"><strong>6.</strong> Think of a story where the hidden past finally came to light.</li>
+                                <li style="margin-bottom: 6px;"><strong>7.</strong> Think of the moment she chose the path her own heart wanted.</li>
                             </ul>
                         </div>
                     </div>
@@ -838,18 +714,15 @@ body {
                 <div class="sheet" id="sheet5">
                     <div class="face">
                         <div class="leaf-fragment leaf-4"></div>
-                        <svg class="twig twig-2" viewBox="0 0 100 40" fill="none" stroke="#3b2714" stroke-width="2.5" stroke-linecap="round">
-                            <path d="M10 12 Q 48 38, 82 15 T 95 22" />
-                        </svg>
-                        <div class="chapter fade-text" style="max-width: 350px;">
+                        <div class="chapter fade-text">
                             <div class="chapter-label">EPILOGUE</div>
-                            <h2 style="font-size: 18px; margin-bottom: 6px;">Until We Meet Again</h2>
-                            <div class="ornament" style="margin: 4px 0;">✧ ◆ ✧</div>
-                            <p style="font-size: 14px; line-height: 1.45;">
-                                Seven riddles. Seven seals unlocked. What do all seven secrets create together? A person kind enough, understanding enough, wise enough, and strong enough.<br>
-                                You become legendary simply by continuing to be yourself. And sooner or later... you'll be absolutely <strong>GOATED</strong>.<br>
+                            <h2 style="font-size: 15px; margin-bottom: 4px;">Until We Meet Again</h2>
+                            <div class="ornament" style="margin: 2px 0;">✧ ◆ ✧</div>
+                            <p style="font-size: 12.5px; line-height: 1.35;">
+                                Seven riddles unlocked. What do they create? A person kind enough, wise enough, and strong enough.<br>
+                                You become legendary by being yourself. And sooner or later... you're absolutely <strong>GOATED</strong>.<br>
                                 <strong>It was you all along.</strong><br>
-                                <em style="color: #4a2810; font-weight: bold;">Happy Birthday Anu. May this next chapter be the one where the magic truly begins. 🪄</em>
+                                <em style="color: #4a2810; font-weight: bold;">Happy Birthday Anu! 🪄</em>
                             </p>
                         </div>
                     </div>
@@ -858,9 +731,9 @@ body {
                             <div class="cover-inner fade-text">
                                 <div class="cover-border">
                                     <div class="cover-symbol">✨</div>
-                                    <div class="back-quote" style="font-size: 19px;">"The magic<br>was always<br>you."</div>
-                                    <div class="cover-subtitle" style="font-size: 15px; margin-top: 15px;">Happy Birthday Anu 🪄</div>
-                                    <div class="cover-divider" style="margin-top: 15px;">✧ ◆ ✧</div>
+                                    <div class="back-quote" style="font-size: 16px;">"The magic<br>was always<br>you."</div>
+                                    <div class="cover-subtitle" style="font-size: 14px; margin-top: 10px;">Happy Birthday Anu 🪄</div>
+                                    <div class="cover-divider" style="margin-top: 10px;">✧ ◆ ✧</div>
                                 </div>
                             </div>
                         </div>
@@ -872,10 +745,8 @@ body {
 
         <!-- Control Panel -->
         <div class="control-panel">
-            <button class="nav-btn" id="zoomOutBtn" title="Zoom Out">🔍-</button>
             <button class="nav-btn" id="prevBtn" title="Previous Page">◀</button>
             <button class="nav-btn" id="nextBtn" title="Next Page">▶</button>
-            <button class="nav-btn" id="zoomInBtn" title="Zoom In">🔍+</button>
         </div>
     </div>
 </div>
@@ -900,8 +771,6 @@ const book = document.getElementById("book");
 const bookScene = document.getElementById("bookScene");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
-const zoomInBtn = document.getElementById("zoomInBtn");
-const zoomOutBtn = document.getElementById("zoomOutBtn");
 
 const sheets = [
     document.getElementById("sheet0"),
@@ -913,42 +782,23 @@ const sheets = [
 ];
 
 const totalPages = sheets.length;
-
 let state = 0;
-let parallaxX = 0;
-let parallaxY = 0;
-let currentZoom = 1.0;
-
-// Dragging/Panning and Snap-back variables
-let panX = 0;
-let panY = 0;
-let pointerDownX = 0;
-let pointerDownY = 0;
-let panStartX = 0;
-let panStartY = 0;
-let hasMoved = false;
-let isPanning = false;
-let clickDirection = 0;
 
 function updateBookTransform() {
     let translateX = 0;
     if (state === 0) {
-        translateX = 205; 
+        translateX = 150; 
     } else if (state === totalPages) {
-        translateX = 260; 
+        translateX = 190; 
     } else {
         translateX = 0;   
     }
-    const rx = 13 - parallaxY;
-    const ry = -7 + parallaxX;
-    book.style.transform = `translateX(${translateX + panX}px) scale(${currentZoom}) rotateX(${rx}deg) rotateY(${ry}deg) translateY(${-12 + panY}px)`;
+    book.style.transform = `translateX(${translateX}px) rotateX(6deg) rotateY(-3deg)`;
 }
 
 function updateControls() {
     prevBtn.disabled = state <= 0;
     nextBtn.disabled = state >= totalPages;
-    zoomOutBtn.disabled = currentZoom <= 0.75;
-    zoomInBtn.disabled = currentZoom >= 1.35;
 }
 
 function updateBook() {
@@ -980,149 +830,68 @@ function updateBook() {
 
 updateBook();
 
-// Mouse Scroll Wheel Zoom Feature
-bookScene.addEventListener("wheel", function(event) {
-    event.preventDefault();
-    if (event.deltaY < 0) {
-        if (currentZoom < 1.35) {
-            currentZoom = parseFloat((currentZoom + 0.1).toFixed(1));
-        }
-    } else {
-        if (currentZoom > 0.75) {
-            currentZoom = parseFloat((currentZoom - 0.1).toFixed(1));
-        }
-    }
-    updateBookTransform();
-    updateControls();
-}, { passive: false });
+// Touch & Swipe Gesture Support for Mobile
+let touchStartX = 0;
+let touchEndX = 0;
 
-zoomInBtn.addEventListener("click", function() {
-    if (currentZoom < 1.35) {
-        currentZoom = parseFloat((currentZoom + 0.1).toFixed(1));
-        updateBookTransform();
-        updateControls();
-    }
-});
+bookScene.addEventListener("touchstart", function(event) {
+    touchStartX = event.changedTouches[0].screenX;
+}, { passive: true });
 
-zoomOutBtn.addEventListener("click", function() {
-    if (currentZoom > 0.75) {
-        currentZoom = parseFloat((currentZoom - 0.1).toFixed(1));
-        updateBookTransform();
-        updateControls();
-    }
-});
+bookScene.addEventListener("touchend", function(event) {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
 
-// Drag Anywhere with Snap-Back Feature
-bookScene.addEventListener("pointerdown", function(event) {
-    pointerDownX = event.clientX;
-    pointerDownY = event.clientY;
-    panStartX = event.clientX - panX;
-    panStartY = event.clientY - panY;
-    hasMoved = false;
-    isPanning = false;
-
-    const bookRect = book.getBoundingClientRect();
-    const bookCenter = bookRect.left + bookRect.width / 2;
-    clickDirection = event.clientX >= bookCenter ? 1 : -1;
-
-    book.style.transition = "none";
-    bookScene.setPointerCapture(event.pointerId);
-});
-
-bookScene.addEventListener("mousemove", function(event) {
-    const bookRect = book.getBoundingClientRect();
-    const bookCenter = bookRect.left + bookRect.width / 2;
-    const clientX = event.clientX;
-
-    if (state > 0 && clientX < bookCenter) {
-        book.classList.add("hover-left");
-    } else {
-        book.classList.remove("hover-left");
-    }
-
-    if (state < totalPages && clientX >= bookCenter) {
-        book.classList.add("hover-right");
-    } else {
-        book.classList.remove("hover-right");
-    }
-
-    if (event.buttons === 1 && pointerDownX !== 0) {
-        const dx = event.clientX - pointerDownX;
-        const dy = event.clientY - pointerDownY;
-        if (Math.hypot(dx, dy) > 5) {
-            hasMoved = true;
-            isPanning = true;
-            panX = event.clientX - panStartX;
-            panY = event.clientY - panStartY;
-            updateBookTransform();
+function handleSwipe() {
+    const swipeThreshold = 40; // minimum distance for swipe
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Swiped Left -> Next Page
+        if (state < totalPages) {
+            state++;
+            updateBook();
         }
     }
-
-    if (!isPanning && pointerDownX === 0) {
-        const x = (event.clientX / window.innerWidth) - 0.5;
-        const y = (event.clientY / window.innerHeight) - 0.5;
-        parallaxX = x * 3;
-        parallaxY = y * 2;
-        updateBookTransform();
-    }
-});
-
-function finishPan(event) {
-    if (hasMoved) {
-        // Smoothly snap back to original position
-        book.style.transition = "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
-        panX = 0;
-        panY = 0;
-        updateBookTransform();
-        setTimeout(() => {
-            book.style.transition = "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
-        }, 500);
-    } else if (!hasMoved && pointerDownX !== 0) {
-        // If it was just a click (no drag), turn page
-        if (clickDirection > 0) {
-            if (state < totalPages) { state++; updateBook(); }
-        } else {
-            if (state > 0) { state--; updateBook(); }
+    if (touchEndX > touchStartX + swipeThreshold) {
+        // Swiped Right -> Previous Page
+        if (state > 0) {
+            state--;
+            updateBook();
         }
-    }
-    isPanning = false;
-    hasMoved = false;
-    pointerDownX = 0;
-    pointerDownY = 0;
-    if (event && bookScene.hasPointerCapture && bookScene.hasPointerCapture(event.pointerId)) {
-        try { bookScene.releasePointerCapture(event.pointerId); } catch (error) {}
     }
 }
 
-bookScene.addEventListener("pointerup", finishPan);
-bookScene.addEventListener("pointercancel", finishPan);
-
-nextBtn.addEventListener("click", function() {
-    if (state < totalPages) { state++; updateBook(); }
-});
-
-prevBtn.addEventListener("click", function() {
-    if (state > 0) { state--; updateBook(); }
-});
-
-document.addEventListener("keydown", function(event) {
-    if (event.key === "ArrowRight" || event.key === " ") {
+// Fallback click to turn page if tapped directly on edges without swiping
+bookScene.addEventListener("click", function(event) {
+    const bookRect = book.getBoundingClientRect();
+    const bookCenter = bookRect.left + bookRect.width / 2;
+    
+    if (event.clientX >= bookCenter) {
         if (state < totalPages) { state++; updateBook(); }
-    }
-    if (event.key === "ArrowLeft") {
+    } else {
         if (state > 0) { state--; updateBook(); }
     }
 });
 
+nextBtn.addEventListener("click", function(event) {
+    event.stopPropagation();
+    if (state < totalPages) { state++; updateBook(); }
+});
+
+prevBtn.addEventListener("click", function(event) {
+    event.stopPropagation();
+    if (state > 0) { state--; updateBook(); }
+});
+
 const dust = document.getElementById("dust");
-for (let i = 0; i < 65; i++) {
+for (let i = 0; i < 35; i++) {
     const particle = document.createElement("div");
     particle.className = "dust-particle";
     particle.style.left = Math.random() * 100 + "%";
     particle.style.top = (50 + Math.random() * 50) + "%";
-    particle.style.animationDuration = (7 + Math.random() * 12) + "s";
-    particle.style.animationDelay = (-Math.random() * 15) + "s";
-    particle.style.opacity = 0.2 + Math.random() * 0.6;
+    particle.style.animationDuration = (6 + Math.random() * 10) + "s";
+    particle.style.animationDelay = (-Math.random() * 12) + "s";
+    particle.style.opacity = 0.2 + Math.random() * 0.5;
     const size = 1 + Math.random() * 2;
     particle.style.width = size + "px";
     particle.style.height = size + "px";
