@@ -137,7 +137,7 @@ body {
 
 .guide-box-line {
     font-family: "Cormorant Garamond", serif;
-    font-size: 12px;
+    font-size: 11.5px;
     color: #b99554;
 }
 
@@ -231,7 +231,18 @@ body {
     perspective: 1400px;
     overflow: visible;
     user-select: none;
-    touch-action: pan-y;
+    touch-action: none; /* Managed fully via custom JS touch handlers */
+}
+
+/* Zoom Wrapper for Pinch-Zoom & Drag Pan */
+.zoom-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center center;
+    will-change: transform;
 }
 
 /* Control Panel */
@@ -526,7 +537,7 @@ body {
     <!-- Bottom Guide Box for Mobile -->
     <div class="guide-box">
         <div class="guide-box-header"><span>✦</span> Practical Notebook Guide</div>
-        <div class="guide-box-line">Left pages blank • Right pages info • Swipe to turn</div>
+        <div class="guide-box-line">Swipe turn • Pinch 2 fingers to zoom & drag</div>
     </div>
 
     <!-- Atmosphere -->
@@ -538,205 +549,207 @@ body {
     <!-- Book & Control Wrapper -->
     <div class="book-container-wrapper">
         <div class="book-scene" id="bookScene">
-            <div class="book" id="book">
-                <div class="page-block"></div>
-                <div class="spine"></div>
+            <div class="zoom-wrapper" id="zoomWrapper">
+                <div class="book" id="book">
+                    <div class="page-block"></div>
+                    <div class="spine"></div>
 
-                <!-- SHEET 0: Front Cover (Right) & Blank Left -->
-                <div class="sheet" id="sheet0">
-                    <div class="front-cover fade-text">
-                        <div class="cover-inner">
-                            <div class="cover-border">
-                                <div class="cover-symbol">✦</div>
-                                <div class="cover-title">
-                                    THE CHAMBER<br>
-                                    OF SHARED<br>
-                                    SPELLS
-                                </div>
-                                <div class="cover-subtitle">— an Ancient Grimoire —</div>
-                                <div class="cover-divider">✧ ◆ ✧</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 1: Blank Left | Chapter I (Right) -->
-                <div class="sheet" id="sheet1">
-                    <div class="face">
-                        <div class="chapter fade-text">
-                            <div class="chapter-label">CHAPTER I — THE FIRST SEAL</div>
-                            <h2>The Nameless Spark</h2>
-                            <div class="ornament">✦ ✧ ✦</div>
-                            <p>
-                                What cannot be bought with all the gold of empires, yet is born entirely without a sound? It costs nothing to give away, yet can mean everything to the one who receives it. It becomes no larger by keeping, nor smaller when shared.<br><br>
-                                And when given freely, it transforms the air around it into something timeless.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 2: Blank Left | Chapter II (Right) -->
-                <div class="sheet" id="sheet2">
-                    <div class="face">
-                        <div class="chapter fade-text">
-                            <div class="chapter-label">CHAPTER II — THE SHARED FLAME</div>
-                            <h2>The Unseen Echo</h2>
-                            <div class="ornament">✧ ◆ ✧</div>
-                            <p>
-                                What has no eyes, yet clearly sees another person's hidden pain? What has no ears, yet hears words that were never spoken aloud? It asks no questions when a heart has already answered.<br><br>
-                                For a touch may reach a hand, but this force understands the deepest corners of the heart.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 3: Blank Left | Chapter III (Right) -->
-                <div class="sheet" id="sheet3">
-                    <div class="face">
-                        <div class="chapter fade-text">
-                            <div class="chapter-label">CHAPTER III — THE HIDDEN DOOR</div>
-                            <h2>The Unshakable Wall</h2>
-                            <div class="ornament">✦ ✧ ✦</div>
-                            <p>
-                                What protects the soul without ever building stone walls? It cannot be seen with physical eyes, yet it stands taller than any fortress. It does not shout when challenged, nor does it beg strangers to believe in it.<br><br>
-                                Built not from the shifting opinions of others, but from a quiet, unbreakable truth.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 4: Blank Left | Chapter IV (Right) -->
-                <div class="sheet" id="sheet4">
-                    <div class="face">
-                        <div class="chapter fade-text">
-                            <div class="chapter-label">CHAPTER IV — THE ANCIENT WORDS</div>
-                            <h2>The Timeless Mirror</h2>
-                            <div class="ornament">✧ ◆ ✧</div>
-                            <p>
-                                What remains radiant even when ordinary reflections fade? A mirror can remember a physical face, but it cannot hold onto a soul. Time alters smiles, silence changes voices, and years transform every feature.<br><br>
-                                Yet there is a beauty that grows more profound the longer it is lived.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 5: Blank Left | Chapter V (Right) -->
-                <div class="sheet" id="sheet5">
-                    <div class="face">
-                        <div class="chapter fade-text">
-                            <div class="chapter-label">CHAPTER V — THE GATHERING</div>
-                            <h2>The Carved Runes</h2>
-                            <div class="ornament">✦ ✧ ✦</div>
-                            <p>
-                                What is forged from every mistake you once wished you could erase? From every sudden goodbye you thought would break you, and every hard lesson understood only long after the tears dried?<br><br>
-                                For nothing that hurt you was meant to destroy you—some shadows came only to teach you how to shine.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 6: Blank Left | Chapter VI (Right) -->
-                <div class="sheet" id="sheet6">
-                    <div class="face">
-                        <div class="chapter fade-text">
-                            <div class="chapter-label">CHAPTER VI — THE SPELLBOOK</div>
-                            <h2>The Endless Flame</h2>
-                            <div class="ornament">✧ ◆ ✧</div>
-                            <p>
-                                What grows infinitely stronger the more it is given away? It cannot be held physically in your hands, yet it can reshape an entire existence. It cannot be spent, yet it enriches everyone it touches.<br><br>
-                                Like a torch that lights another without losing its own fire, what you share never leaves you empty.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 7: Blank Left | Chapter VII (Right) -->
-                <div class="sheet" id="sheet7">
-                    <div class="face">
-                        <div class="chapter fade-text">
-                            <div class="chapter-label">CHAPTER VII — THE LAST INCANTATION</div>
-                            <h2>The Absolute Anchor</h2>
-                            <div class="ornament">✦ ✧ ✦</div>
-                            <p>
-                                What makes a traveler completely unstoppable without ever raising a sword? It is not raw muscle, nor is it loud defiance. When shadows fall, it rises knowing more than before.<br><br>
-                                Not by arguing with critics, but by becoming so certain of who you are that noise vanishes.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 8: Blank Left | Hint Section Part I (Right) -->
-                <div class="sheet" id="sheet8">
-                    <div class="face">
-                        <div class="chapter fade-text" style="text-align: left;">
-                            <div class="chapter-label" style="text-align: center;">HINT SECTION — PART I</div>
-                            <h2 style="font-size: 15px; margin-bottom: 4px; text-align: center;">The Seeker's Clues</h2>
-                            <div class="ornament" style="margin: 2px 0; text-align: center;">✦ ✧ ✦</div>
-                            <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
-                                <li style="margin-bottom: 5px;"><strong>1.</strong> Think of a tiny golden flower whose magic belonged to more than one.</li>
-                                <li style="margin-bottom: 5px;"><strong>2.</strong> Think of two people beneath a sky filled with glowing lanterns.</li>
-                                <li style="margin-bottom: 5px;"><strong>3.</strong> Think of a girl behind four walls discovering the real world.</li>
-                                <li style="margin-bottom: 5px;"><strong>4.</strong> Look beyond the long hair and crown to the girl beneath.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 9: Blank Left | Hint Section Part II (Right) -->
-                <div class="sheet" id="sheet9">
-                    <div class="face">
-                        <div class="chapter fade-text" style="text-align: left;">
-                            <div class="chapter-label" style="text-align: center;">HINT SECTION — PART II</div>
-                            <h2 style="font-size: 15px; margin-bottom: 4px; text-align: center;">The Journey Ahead</h2>
-                            <div class="ornament" style="margin: 2px 0; text-align: center;">✧ ◆ ✧</div>
-                            <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
-                                <li style="margin-bottom: 6px;"><strong>5.</strong> Think of the road from the tower to the kingdom and every lesson learned.</li>
-                                <li style="margin-bottom: 6px;"><strong>6.</strong> Think of a story where the hidden past finally came to light.</li>
-                                <li style="margin-bottom: 6px;"><strong>7.</strong> Think of the moment she chose the path her own heart wanted.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="face back"></div>
-                </div>
-
-                <!-- SHEET 10: Blank Left | Epilogue (Right) -->
-                <div class="sheet" id="sheet10">
-                    <div class="face">
-                        <div class="chapter fade-text">
-                            <div class="chapter-label">EPILOGUE</div>
-                            <h2 style="font-size: 15px; margin-bottom: 4px;">Until We Meet Again</h2>
-                            <div class="ornament" style="margin: 2px 0;">✧ ◆ ✧</div>
-                            <p style="font-size: 12.5px; line-height: 1.35;">
-                                Seven riddles unlocked. What do they create? A person kind enough, wise enough, and strong enough.<br>
-                                You become legendary by being yourself. And sooner or later... you're absolutely <strong>GOATED</strong>.<br>
-                                <strong>It was you all along.</strong><br>
-                                <em style="color: #4a2810; font-weight: bold;">Happy Birthday Anu! 🪄</em>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="face back">
-                        <div class="back-cover">
-                            <div class="cover-inner fade-text">
+                    <!-- SHEET 0: Front Cover (Right) & Blank Left -->
+                    <div class="sheet" id="sheet0">
+                        <div class="front-cover fade-text">
+                            <div class="cover-inner">
                                 <div class="cover-border">
-                                    <div class="cover-symbol">✨</div>
-                                    <div class="back-quote" style="font-size: 16px;">"The magic<br>was always<br>you."</div>
-                                    <div class="cover-subtitle" style="font-size: 14px; margin-top: 10px;">Happy Birthday Anu 🪄</div>
-                                    <div class="cover-divider" style="margin-top: 10px;">✧ ◆ ✧</div>
+                                    <div class="cover-symbol">✦</div>
+                                    <div class="cover-title">
+                                        THE CHAMBER<br>
+                                        OF SHARED<br>
+                                        SPELLS
+                                    </div>
+                                    <div class="cover-subtitle">— an Ancient Grimoire —</div>
+                                    <div class="cover-divider">✧ ◆ ✧</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 1: Blank Left | Chapter I (Right) -->
+                    <div class="sheet" id="sheet1">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER I — THE FIRST SEAL</div>
+                                <h2>The Nameless Spark</h2>
+                                <div class="ornament">✦ ✧ ✦</div>
+                                <p>
+                                    What cannot be bought with all the gold of empires, yet is born entirely without a sound? It costs nothing to give away, yet can mean everything to the one who receives it. It becomes no larger by keeping, nor smaller when shared.<br><br>
+                                    And when given freely, it transforms the air around it into something timeless.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 2: Blank Left | Chapter II (Right) -->
+                    <div class="sheet" id="sheet2">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER II — THE SHARED FLAME</div>
+                                <h2>The Unseen Echo</h2>
+                                <div class="ornament">✧ ◆ ✧</div>
+                                <p>
+                                    What has no eyes, yet clearly sees another person's hidden pain? What has no ears, yet hears words that were never spoken aloud? It asks no questions when a heart has already answered.<br><br>
+                                    For a touch may reach a hand, but this force understands the deepest corners of the heart.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 3: Blank Left | Chapter III (Right) -->
+                    <div class="sheet" id="sheet3">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER III — THE HIDDEN DOOR</div>
+                                <h2>The Unshakable Wall</h2>
+                                <div class="ornament">✦ ✧ ✦</div>
+                                <p>
+                                    What protects the soul without ever building stone walls? It cannot be seen with physical eyes, yet it stands taller than any fortress. It does not shout when challenged, nor does it beg strangers to believe in it.<br><br>
+                                    Built not from the shifting opinions of others, but from a quiet, unbreakable truth.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 4: Blank Left | Chapter IV (Right) -->
+                    <div class="sheet" id="sheet4">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER IV — THE ANCIENT WORDS</div>
+                                <h2>The Timeless Mirror</h2>
+                                <div class="ornament">✧ ◆ ✧</div>
+                                <p>
+                                    What remains radiant even when ordinary reflections fade? A mirror can remember a physical face, but it cannot hold onto a soul. Time alters smiles, silence changes voices, and years transform every feature.<br><br>
+                                    Yet there is a beauty that grows more profound the longer it is lived.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 5: Blank Left | Chapter V (Right) -->
+                    <div class="sheet" id="sheet5">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER V — THE GATHERING</div>
+                                <h2>The Carved Runes</h2>
+                                <div class="ornament">✦ ✧ ✦</div>
+                                <p>
+                                    What is forged from every mistake you once wished you could erase? From every sudden goodbye you thought would break you, and every hard lesson understood only long after the tears dried?<br><br>
+                                    For nothing that hurt you was meant to destroy you—some shadows came only to teach you how to shine.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 6: Blank Left | Chapter VI (Right) -->
+                    <div class="sheet" id="sheet6">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER VI — THE SPELLBOOK</div>
+                                <h2>The Endless Flame</h2>
+                                <div class="ornament">✧ ◆ ✧</div>
+                                <p>
+                                    What grows infinitely stronger the more it is given away? It cannot be held physically in your hands, yet it can reshape an entire existence. It cannot be spent, yet it enriches everyone it touches.<br><br>
+                                    Like a torch that lights another without losing its own fire, what you share never leaves you empty.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 7: Blank Left | Chapter VII (Right) -->
+                    <div class="sheet" id="sheet7">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER VII — THE LAST INCANTATION</div>
+                                <h2>The Absolute Anchor</h2>
+                                <div class="ornament">✦ ✧ ✦</div>
+                                <p>
+                                    What makes a traveler completely unstoppable without ever raising a sword? It is not raw muscle, nor is it loud defiance. When shadows fall, it rises knowing more than before.<br><br>
+                                    Not by arguing with critics, but by becoming so certain of who you are that noise vanishes.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 8: Blank Left | Hint Section Part I (Right) -->
+                    <div class="sheet" id="sheet8">
+                        <div class="face">
+                            <div class="chapter fade-text" style="text-align: left;">
+                                <div class="chapter-label" style="text-align: center;">HINT SECTION — PART I</div>
+                                <h2 style="font-size: 15px; margin-bottom: 4px; text-align: center;">The Seeker's Clues</h2>
+                                <div class="ornament" style="margin: 2px 0; text-align: center;">✦ ✧ ✦</div>
+                                <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
+                                    <li style="margin-bottom: 5px;"><strong>1.</strong> Think of a tiny golden flower whose magic belonged to more than one.</li>
+                                    <li style="margin-bottom: 5px;"><strong>2.</strong> Think of two people beneath a sky filled with glowing lanterns.</li>
+                                    <li style="margin-bottom: 5px;"><strong>3.</strong> Think of a girl behind four walls discovering the real world.</li>
+                                    <li style="margin-bottom: 5px;"><strong>4.</strong> Look beyond the long hair and crown to the girl beneath.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 9: Blank Left | Hint Section Part II (Right) -->
+                    <div class="sheet" id="sheet9">
+                        <div class="face">
+                            <div class="chapter fade-text" style="text-align: left;">
+                                <div class="chapter-label" style="text-align: center;">HINT SECTION — PART II</div>
+                                <h2 style="font-size: 15px; margin-bottom: 4px; text-align: center;">The Journey Ahead</h2>
+                                <div class="ornament" style="margin: 2px 0; text-align: center;">✧ ◆ ✧</div>
+                                <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
+                                    <li style="margin-bottom: 6px;"><strong>5.</strong> Think of the road from the tower to the kingdom and every lesson learned.</li>
+                                    <li style="margin-bottom: 6px;"><strong>6.</strong> Think of a story where the hidden past finally came to light.</li>
+                                    <li style="margin-bottom: 6px;"><strong>7.</strong> Think of the moment she chose the path her own heart wanted.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 10: Blank Left | Epilogue (Right) -->
+                    <div class="sheet" id="sheet10">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">EPILOGUE</div>
+                                <h2 style="font-size: 15px; margin-bottom: 4px;">Until We Meet Again</h2>
+                                <div class="ornament" style="margin: 2px 0;">✧ ◆ ✧</div>
+                                <p style="font-size: 12.5px; line-height: 1.35;">
+                                    Seven riddles unlocked. What do they create? A person kind enough, wise enough, and strong enough.<br>
+                                    You become legendary by being yourself. And sooner or later... you're absolutely <strong>GOATED</strong>.<br>
+                                    <strong>It was you all along.</strong><br>
+                                    <em style="color: #4a2810; font-weight: bold;">Happy Birthday Anu! 🪄</em>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back">
+                            <div class="back-cover">
+                                <div class="cover-inner fade-text">
+                                    <div class="cover-border">
+                                        <div class="cover-symbol">✨</div>
+                                        <div class="back-quote" style="font-size: 16px;">"The magic<br>was always<br>you."</div>
+                                        <div class="cover-subtitle" style="font-size: 14px; margin-top: 10px;">Happy Birthday Anu 🪄</div>
+                                        <div class="cover-divider" style="margin-top: 10px;">✧ ◆ ✧</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
 
@@ -766,6 +779,7 @@ welcomeOverlay.addEventListener("click", function() {
 
 const book = document.getElementById("book");
 const bookScene = document.getElementById("bookScene");
+const zoomWrapper = document.getElementById("zoomWrapper");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
@@ -832,17 +846,76 @@ function updateBook() {
 
 updateBook();
 
-// Touch & Swipe Gesture Support for Mobile
+// Touch & Pinch-Zoom / Pan Variables
+let scale = 1;
+let panX = 0;
+let panY = 0;
+let initialDistance = 0;
+let initialScale = 1;
+let startMidX = 0;
+let startMidY = 0;
+let startPanX = 0;
+let startPanY = 0;
 let touchStartX = 0;
 let touchEndX = 0;
 
+function getDistance(t1, t2) {
+    return Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+}
+
+function getMidpoint(t1, t2) {
+    return {
+        x: (t1.clientX + t2.clientX) / 2,
+        y: (t1.clientY + t2.clientY) / 2
+    };
+}
+
+function updateZoomTransform() {
+    zoomWrapper.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+}
+
 bookScene.addEventListener("touchstart", function(event) {
-    touchStartX = event.changedTouches[0].screenX;
+    if (event.touches.length === 2) {
+        // Two fingers detected: Initialize pinch-to-zoom & pan
+        initialDistance = getDistance(event.touches[0], event.touches[1]);
+        initialScale = scale;
+        const mid = getMidpoint(event.touches[0], event.touches[1]);
+        startMidX = mid.x;
+        startMidY = mid.y;
+        startPanX = panX;
+        startPanY = panY;
+    } else if (event.touches.length === 1 && scale === 1) {
+        touchStartX = event.changedTouches[0].screenX;
+    }
+}, { passive: true });
+
+bookScene.addEventListener("touchmove", function(event) {
+    if (event.touches.length === 2) {
+        // Handle two-finger pinch-to-zoom and drag/pan
+        const currentDist = getDistance(event.touches[0], event.touches[1]);
+        if (initialDistance > 0) {
+            scale = Math.min(Math.max(initialScale * (currentDist / initialDistance), 1), 3);
+        }
+        
+        const mid = getMidpoint(event.touches[0], event.touches[1]);
+        panX = startPanX + (mid.x - startMidX);
+        panY = startPanY + (mid.y - startMidY);
+
+        updateZoomTransform();
+    }
 }, { passive: true });
 
 bookScene.addEventListener("touchend", function(event) {
-    touchEndX = event.changedTouches[0].screenX;
-    handleSwipe();
+    if (event.touches.length < 2 && scale === 1) {
+        touchEndX = event.changedTouches[0].screenX;
+        handleSwipe();
+    }
+    // Reset pan if scaled back down to 1x
+    if (event.touches.length === 0 && scale === 1) {
+        panX = 0;
+        panY = 0;
+        updateZoomTransform();
+    }
 }, { passive: true });
 
 function handleSwipe() {
@@ -861,7 +934,9 @@ function handleSwipe() {
     }
 }
 
+// Single-tap fallback for page turning when at 1x zoom
 bookScene.addEventListener("click", function(event) {
+    if (scale > 1) return; // Do not turn pages on click while zoomed in
     const bookRect = book.getBoundingClientRect();
     const bookCenter = bookRect.left + bookRect.width / 2;
     
