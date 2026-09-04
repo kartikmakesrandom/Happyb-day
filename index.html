@@ -6,6 +6,7 @@
 
 <title>The Chamber of Shared Spells</title>
 
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
@@ -43,7 +44,6 @@ body {
     cursor: pointer;
     transition: opacity 0.8s ease, visibility 0.8s ease;
     padding: 20px;
-    touch-action: manipulation;
 }
 
 .welcome-overlay.fade-out {
@@ -198,6 +198,43 @@ body {
     overflow: hidden;
 }
 
+/* Mobile Guide Box */
+.guide-box {
+    position: absolute;
+    bottom: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    background: rgba(16, 8, 23, 0.88);
+    border: 1px solid rgba(212, 180, 106, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    width: 90%;
+    max-width: 320px;
+    pointer-events: none;
+    text-align: center;
+}
+
+.guide-box-header {
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #d4b46a;
+    font-weight: 600;
+}
+
+.guide-box-line {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 11.5px;
+    color: #b99554;
+}
+
 /* Atmosphere Elements */
 .magic-glow {
     position: absolute;
@@ -275,6 +312,7 @@ body {
     align-items: center;
     gap: 15px;
     z-index: 10;
+    margin-bottom: 50px;
 }
 
 .book-scene {
@@ -322,4 +360,746 @@ body {
     font-family: "Cinzel", serif;
     font-size: 13px;
     width: 38px;
-    height:
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn:active {
+    transform: scale(0.92);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    border-color: rgba(212, 180, 106, 0.2);
+}
+
+/* Book Elements */
+.book {
+    --book-w: 320px;
+    --book-h: 430px;
+    position: relative;
+    width: var(--book-w);
+    height: var(--book-h);
+    transform-style: preserve-3d;
+    transform: rotateX(6deg) rotateY(-3deg);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.page-block {
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    width: calc(var(--book-w) - 14px);
+    height: calc(var(--book-h) - 12px);
+    background: repeating-linear-gradient(0deg, rgba(70, 45, 20, 0.12) 0px, rgba(70, 45, 20, 0.12) 1px, transparent 1px, transparent 4px), linear-gradient(90deg, #b89f72, #e0cb9e 4%, #b59b6c 96%, #826a45);
+    border-radius: 4px 8px 8px 4px;
+    box-shadow: 4px 4px 0 #3b2714, 6px 6px 12px rgba(0, 0, 0, 0.5);
+    transform: translateZ(-12px);
+    z-index: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.book.at-end .page-block {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spine {
+    position: absolute;
+    left: -6px;
+    top: -2px;
+    width: 24px;
+    height: calc(var(--book-h) + 4px);
+    border-radius: 8px 0 0 8px;
+    background: linear-gradient(90deg, #070504, #26160d 25%, #5a3218 50%, #24140c 75%, #080504);
+    box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.7), 3px 0 6px rgba(0, 0, 0, 0.4);
+    transform: translateZ(10px);
+    z-index: 200;
+    pointer-events: none;
+}
+
+.sheet {
+    position: absolute;
+    inset: 0;
+    width: var(--book-w);
+    height: var(--book-h);
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 10;
+}
+
+/* Parchment Face */
+.face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border-radius: 3px 8px 8px 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 22px;
+    text-align: center;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(95, 63, 29, 0.15) 0%, transparent 18%),
+        radial-gradient(ellipse at center, rgba(245, 230, 195, 0.7) 0%, rgba(153, 122, 80, 0.4) 85%, rgba(94, 70, 42, 0.7) 100%),
+        repeating-linear-gradient(0deg, rgba(74, 48, 20, 0.05) 0px, rgba(74, 48, 20, 0.05) 1px, transparent 1px, transparent 6px),
+        linear-gradient(90deg, #ad9263, #e3cd9e 8%, #d9c293 90%, #997c4d);
+    color: #2e2012;
+    box-shadow: inset 0 0 25px rgba(54, 33, 12, 0.35);
+}
+
+.face::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, #786139 0px, #ebdcb6 3px, #8c7344 6px);
+    opacity: 0.85;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.chapter {
+    width: 100%;
+    max-width: 270px;
+    z-index: 15;
+}
+
+.chapter-label {
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    color: #59421f;
+}
+
+.chapter h2 {
+    font-family: "Cinzel Decorative", serif;
+    font-size: 16px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: #382411;
+}
+
+.chapter p {
+    font-family: "IM Fell English", serif;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #3b2a18;
+}
+
+.ornament {
+    margin: 6px 0;
+    font-size: 13px;
+    color: #6e5227;
+    letter-spacing: 4px;
+}
+
+/* Covers */
+.front-cover {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 40%, rgba(115, 70, 25, 0.20), transparent 55%), linear-gradient(145deg, #17100b 0%, #2b180d 34%, #120b08 73%, #070403 100%);
+    border-radius: 6px 10px 10px 6px;
+    border: 2px solid #100a06;
+    box-shadow: inset 0 0 0 1px rgba(207, 164, 74, 0.16), inset 0 0 25px rgba(0, 0, 0, 0.9), 6px 10px 25px rgba(0, 0, 0, 0.6);
+    backface-visibility: hidden;
+}
+
+.front-cover::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(205, 164, 80, 0.4);
+    border-radius: 4px;
+}
+
+.cover-inner {
+    position: absolute;
+    inset: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(205, 164, 83, 0.25);
+    border-radius: 3px;
+    background: radial-gradient(circle at center, rgba(120, 76, 27, 0.13), transparent 70%);
+}
+
+.cover-border {
+    width: 85%;
+    height: 86%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(207, 166, 80, 0.5);
+    outline: 1px solid rgba(207, 166, 80, 0.12);
+    outline-offset: 4px;
+}
+
+.cover-symbol {
+    font-family: "Cinzel Decorative", serif;
+    font-size: 28px;
+    color: #cda85b;
+    margin-bottom: 16px;
+}
+
+.cover-title {
+    font-family: "Cinzel Decorative", "Cinzel", serif;
+    font-size: 20px;
+    line-height: 1.35;
+    letter-spacing: 1.5px;
+    color: #d4b46a;
+    text-shadow: 1px 1px 0 #5d421d;
+}
+
+.cover-subtitle {
+    margin-top: 14px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 16px;
+    font-style: italic;
+    color: #b99554;
+}
+
+.cover-divider {
+    margin-top: 16px;
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: #a98445;
+}
+
+.back-cover {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(112, 68, 27, 0.18), transparent 60%), linear-gradient(145deg, #1a0f09, #29160d 45%, #0c0705);
+    border-radius: 10px 6px 6px 10px;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8), -6px 10px 25px rgba(0, 0, 0, 0.6);
+    border: 2px solid #100a06;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-quote {
+    font-family: "Cinzel Decorative", serif;
+    font-size: 17px;
+    line-height: 1.45;
+    letter-spacing: 1px;
+    color: #d4b46a;
+    text-shadow: 1px 1px 0 #5d421d;
+    padding: 0 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Welcome Overlay -->
+<div id="welcomeOverlay" class="welcome-overlay">
+    <div class="welcome-box">
+        <div class="welcome-symbol">✦</div>
+        <div class="welcome-title">The Chamber of Shared Spells</div>
+        <div class="welcome-text">
+            Welcome, Seeker...<br>
+            <strong>Tap anywhere</strong> to begin your journey.
+        </div>
+        <div class="welcome-symbol" style="margin-top: 15px; font-size: 13px; letter-spacing: 5px;">✧ ◆ ✧</div>
+    </div>
+</div>
+
+<!-- Info Instructions Button -->
+<button class="info-btn" id="infoBtn" title="Navigation Guide">ℹ️</button>
+
+<!-- Instructions Modal -->
+<div class="info-modal" id="infoModal">
+    <div class="info-modal-content">
+        <button class="info-modal-close" id="infoClose">✕</button>
+        <div class="info-modal-title">Navigation Guide</div>
+        <ul class="info-list">
+            <li><strong>Page Turning:</strong> Swipe left or right on the screen, or use the bottom navigation arrows (◀ / ▶). You can also tap the left or right edges of an open book.</li>
+            <li><strong>Pinch to Zoom:</strong> Place two fingers on the screen and pinch outward to zoom in, or inward to zoom out (up to 3x).</li>
+            <li><strong>Drag & Pan:</strong> When zoomed in, move two fingers around to freely pan and inspect text details.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Local Audio Player -->
+<audio id="bgAudio" loop preload="auto">
+    <source src="background-music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="stage">
+    <!-- Bottom Guide Box for Mobile -->
+    <div class="guide-box">
+        <div class="guide-box-header"><span>✦</span> Practical Notebook Guide</div>
+        <div class="guide-box-line">Swipe turn • Pinch 2 fingers to zoom & drag</div>
+    </div>
+
+    <!-- Atmosphere -->
+    <div class="magic-glow"></div>
+    <div class="candle-light"></div>
+    <div class="floor-shadow"></div>
+    <div class="dust" id="dust"></div>
+
+    <!-- Book & Control Wrapper -->
+    <div class="book-container-wrapper">
+        <div class="book-scene" id="bookScene">
+            <div class="zoom-wrapper" id="zoomWrapper">
+                <div class="book" id="book">
+                    <div class="page-block"></div>
+                    <div class="spine"></div>
+
+                    <!-- SHEET 0: Front Cover (Right) & Blank Left -->
+                    <div class="sheet" id="sheet0">
+                        <div class="front-cover fade-text">
+                            <div class="cover-inner">
+                                <div class="cover-border">
+                                    <div class="cover-symbol">✦</div>
+                                    <div class="cover-title">
+                                        THE CHAMBER<br>
+                                        OF SHARED<br>
+                                        SPELLS
+                                    </div>
+                                    <div class="cover-subtitle">— an Ancient Grimoire —</div>
+                                    <div class="cover-divider">✧ ◆ ✧</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 1: Blank Left | Chapter I (Right) -->
+                    <div class="sheet" id="sheet1">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER I — THE FIRST SEAL</div>
+                                <h2>The Nameless Spark</h2>
+                                <div class="ornament">✦ ✧ ✦</div>
+                                <p>
+                                    What cannot be bought with all the gold of empires, yet is born entirely without a sound? It costs nothing to give away, yet can mean everything to the one who receives it. It becomes no larger by keeping, nor smaller when shared.<br><br>
+                                    And when given freely, it transforms the air around it into something timeless.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 2: Blank Left | Chapter II (Right) -->
+                    <div class="sheet" id="sheet2">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER II — THE SHARED FLAME</div>
+                                <h2>The Unseen Echo</h2>
+                                <div class="ornament">✧ ◆ ✧</div>
+                                <p>
+                                    What has no eyes, yet clearly sees another person's hidden pain? What has no ears, yet hears words that were never spoken aloud? It asks no questions when a heart has already answered.<br><br>
+                                    For a touch may reach a hand, but this force understands the deepest corners of the heart.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 3: Blank Left | Chapter III (Right) -->
+                    <div class="sheet" id="sheet3">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER III — THE HIDDEN DOOR</div>
+                                <h2>The Unshakable Wall</h2>
+                                <div class="ornament">✦ ✧ ✦</div>
+                                <p>
+                                    What protects the soul without ever building stone walls? It cannot be seen with physical eyes, yet it stands taller than any fortress. It does not shout when challenged, nor does it beg strangers to believe in it.<br><br>
+                                    Built not from the shifting opinions of others, but from a quiet, unbreakable truth.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 4: Blank Left | Chapter IV (Right) -->
+                    <div class="sheet" id="sheet4">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER IV — THE ANCIENT WORDS</div>
+                                <h2>The Timeless Mirror</h2>
+                                <div class="ornament">✧ ◆ ✧</div>
+                                <p>
+                                    What remains radiant even when ordinary reflections fade? A mirror can remember a physical face, but it cannot hold onto a soul. Time alters smiles, silence changes voices, and years transform every feature.<br><br>
+                                    Yet there is a beauty that grows more profound the longer it is lived.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 5: Blank Left | Chapter V (Right) -->
+                    <div class="sheet" id="sheet5">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER V — THE GATHERING</div>
+                                <h2>The Carved Runes</h2>
+                                <div class="ornament">✦ ✧ ✦</div>
+                                <p>
+                                    What is forged from every mistake you once wished you could erase? From every sudden goodbye you thought would break you, and every hard lesson understood only long after the tears dried?<br><br>
+                                    For nothing that hurt you was meant to destroy you—some shadows came only to teach you how to shine.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 6: Blank Left | Chapter VI (Right) -->
+                    <div class="sheet" id="sheet6">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER VI — THE SPELLBOOK</div>
+                                <h2>The Endless Flame</h2>
+                                <div class="ornament">✧ ◆ ✧</div>
+                                <p>
+                                    What grows infinitely stronger the more it is given away? It cannot be held physically in your hands, yet it can reshape an entire existence. It cannot be spent, yet it enriches everyone it touches.<br><br>
+                                    Like a torch that lights another without losing its own fire, what you share never leaves you empty.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 7: Blank Left | Chapter VII (Right) -->
+                    <div class="sheet" id="sheet7">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">CHAPTER VII — THE LAST INCANTATION</div>
+                                <h2>The Absolute Anchor</h2>
+                                <div class="ornament">✦ ✧ ✦</div>
+                                <p>
+                                    What makes a traveler completely unstoppable without ever raising a sword? It is not raw muscle, nor is it loud defiance. When shadows fall, it rises knowing more than before.<br><br>
+                                    Not by arguing with critics, but by becoming so certain of who you are that noise vanishes.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 8: Blank Left | Hint Section Part I (Right) -->
+                    <div class="sheet" id="sheet8">
+                        <div class="face">
+                            <div class="chapter fade-text" style="text-align: left;">
+                                <div class="chapter-label" style="text-align: center;">HINT SECTION — PART I</div>
+                                <h2 style="font-size: 15px; margin-bottom: 4px; text-align: center;">The Seeker's Clues</h2>
+                                <div class="ornament" style="margin: 2px 0; text-align: center;">✦ ✧ ✦</div>
+                                <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
+                                    <li style="margin-bottom: 5px;"><strong>1.</strong> Think of a tiny golden flower whose magic belonged to more than one.</li>
+                                    <li style="margin-bottom: 5px;"><strong>2.</strong> Think of two people beneath a sky filled with glowing lanterns.</li>
+                                    <li style="margin-bottom: 5px;"><strong>3.</strong> Think of a girl behind four walls discovering the real world.</li>
+                                    <li style="margin-bottom: 5px;"><strong>4.</strong> Look beyond the long hair and crown to the girl beneath.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 9: Blank Left | Hint Section Part II (Right) -->
+                    <div class="sheet" id="sheet9">
+                        <div class="face">
+                            <div class="chapter fade-text" style="text-align: left;">
+                                <div class="chapter-label" style="text-align: center;">HINT SECTION — PART II</div>
+                                <h2 style="font-size: 15px; margin-bottom: 4px; text-align: center;">The Journey Ahead</h2>
+                                <div class="ornament" style="margin: 2px 0; text-align: center;">✧ ◆ ✧</div>
+                                <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
+                                    <li style="margin-bottom: 6px;"><strong>5.</strong> Think of the road from the tower to the kingdom and every lesson learned.</li>
+                                    <li style="margin-bottom: 6px;"><strong>6.</strong> Think of a story where the hidden past finally came to light.</li>
+                                    <li style="margin-bottom: 6px;"><strong>7.</strong> Think of the moment she chose the path her own heart wanted.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="face back"></div>
+                    </div>
+
+                    <!-- SHEET 10: Blank Left | Epilogue (Right) -->
+                    <div class="sheet" id="sheet10">
+                        <div class="face">
+                            <div class="chapter fade-text">
+                                <div class="chapter-label">EPILOGUE</div>
+                                <h2 style="font-size: 15px; margin-bottom: 4px;">Until We Meet Again</h2>
+                                <div class="ornament" style="margin: 2px 0;">✧ ◆ ✧</div>
+                                <p style="font-size: 12.5px; line-height: 1.35;">
+                                    Seven riddles unlocked. What do they create? A person kind enough, wise enough, and strong enough.<br>
+                                    You become legendary by being yourself. And sooner or later... you're absolutely <strong>GOATED</strong>.<br>
+                                    <strong>It was you all along.</strong><br>
+                                    <em style="color: #4a2810; font-weight: bold;">Happy Birthday Anu! 🪄</em>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="face back">
+                            <div class="back-cover">
+                                <div class="cover-inner fade-text">
+                                    <div class="cover-border">
+                                        <div class="cover-symbol">✨</div>
+                                        <div class="back-quote" style="font-size: 16px;">"The magic<br>was always<br>you."</div>
+                                        <div class="cover-subtitle" style="font-size: 14px; margin-top: 10px;">Happy Birthday Anu 🪄</div>
+                                        <div class="cover-divider" style="margin-top: 10px;">✧ ◆ ✧</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <button class="nav-btn" id="prevBtn" title="Previous Page">◀</button>
+            <button class="nav-btn" id="nextBtn" title="Next Page">▶</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const welcomeOverlay = document.getElementById("welcomeOverlay");
+const bgAudio = document.getElementById("bgAudio");
+
+welcomeOverlay.addEventListener("click", function() {
+    bgAudio.volume = 1.0;
+    bgAudio.play().catch(error => {
+        console.log("Audio playback prevented:", error);
+    });
+
+    welcomeOverlay.classList.add("fade-out");
+    setTimeout(() => {
+        welcomeOverlay.remove();
+    }, 800);
+});
+
+// Instructions Modal Logic
+const infoBtn = document.getElementById("infoBtn");
+const infoModal = document.getElementById("infoModal");
+const infoClose = document.getElementById("infoClose");
+
+infoBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    infoModal.classList.add("active");
+});
+
+infoClose.addEventListener("click", () => {
+    infoModal.classList.remove("active");
+});
+
+infoModal.addEventListener("click", (e) => {
+    if (e.target === infoModal) {
+        infoModal.classList.remove("active");
+    }
+});
+
+const book = document.getElementById("book");
+const bookScene = document.getElementById("bookScene");
+const zoomWrapper = document.getElementById("zoomWrapper");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+const sheets = [
+    document.getElementById("sheet0"),
+    document.getElementById("sheet1"),
+    document.getElementById("sheet2"),
+    document.getElementById("sheet3"),
+    document.getElementById("sheet4"),
+    document.getElementById("sheet5"),
+    document.getElementById("sheet6"),
+    document.getElementById("sheet7"),
+    document.getElementById("sheet8"),
+    document.getElementById("sheet9"),
+    document.getElementById("sheet10")
+];
+
+const totalPages = sheets.length;
+let state = 0;
+
+function updateBookTransform() {
+    let translateX = 0;
+    if (state === 0) {
+        translateX = 10;   // Adjusted further left for starting closed book
+    } else if (state === totalPages) {
+        translateX = 310;  // Adjusted further right for ending closed book
+    } else {
+        translateX = 0;    // Open book stays centered
+    }
+    book.style.transform = `translateX(${translateX}px) rotateX(6deg) rotateY(-3deg)`;
+}
+
+function updateControls() {
+    prevBtn.disabled = state <= 0;
+    nextBtn.disabled = state >= totalPages;
+}
+
+function updateBook() {
+    sheets.forEach((sheet, index) => {
+        const opened = index < state;
+        sheet.style.transform = opened ? "rotateY(-180deg)" : "rotateY(0deg)";
+        if (opened) {
+            sheet.style.zIndex = index + 1;
+        } else {
+            sheet.style.zIndex = totalPages - index + 10;
+        }
+    });
+
+    if (state === totalPages) {
+        book.classList.add("at-end");
+    } else {
+        book.classList.remove("at-end");
+    }
+
+    updateBookTransform();
+    updateControls();
+
+    document.querySelectorAll('.chapter, .front-cover, .cover-inner').forEach(el => {
+        el.classList.remove('fade-text');
+        void el.offsetWidth;
+        el.classList.add('fade-text');
+    });
+}
+
+updateBook();
+
+// Touch & Pinch-Zoom / Pan Variables
+let scale = 1;
+let panX = 0;
+let panY = 0;
+let initialDistance = 0;
+let initialScale = 1;
+let startMidX = 0;
+let startMidY = 0;
+let startPanX = 0;
+let startPanY = 0;
+let touchStartX = 0;
+let touchEndX = 0;
+
+function getDistance(t1, t2) {
+    return Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+}
+
+function getMidpoint(t1, t2) {
+    return {
+        x: (t1.clientX + t2.clientX) / 2,
+        y: (t1.clientY + t2.clientY) / 2
+    };
+}
+
+function updateZoomTransform() {
+    zoomWrapper.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+}
+
+bookScene.addEventListener("touchstart", function(event) {
+    if (event.touches.length === 2) {
+        initialDistance = getDistance(event.touches[0], event.touches[1]);
+        initialScale = scale;
+        const mid = getMidpoint(event.touches[0], event.touches[1]);
+        startMidX = mid.x;
+        startMidY = mid.y;
+        startPanX = panX;
+        startPanY = panY;
+    } else if (event.touches.length === 1 && scale === 1) {
+        touchStartX = event.changedTouches[0].screenX;
+    }
+}, { passive: true });
+
+bookScene.addEventListener("touchmove", function(event) {
+    if (event.touches.length === 2) {
+        const currentDist = getDistance(event.touches[0], event.touches[1]);
+        if (initialDistance > 0) {
+            scale = Math.min(Math.max(initialScale * (currentDist / initialDistance), 1), 3);
+        }
+        
+        const mid = getMidpoint(event.touches[0], event.touches[1]);
+        panX = startPanX + (mid.x - startMidX);
+        panY = startPanY + (mid.y - startMidY);
+
+        updateZoomTransform();
+    }
+}, { passive: true });
+
+bookScene.addEventListener("touchend", function(event) {
+    if (event.touches.length < 2 && scale === 1) {
+        touchEndX = event.changedTouches[0].screenX;
+        handleSwipe();
+    }
+    if (event.touches.length === 0 && scale === 1) {
+        panX = 0;
+        panY = 0;
+        updateZoomTransform();
+    }
+}, { passive: true });
+
+function handleSwipe() {
+    const swipeThreshold = 40;
+    if (touchEndX < touchStartX - swipeThreshold) {
+        if (state < totalPages) {
+            state++;
+            updateBook();
+        }
+    }
+    if (touchEndX > touchStartX + swipeThreshold) {
+        if (state > 0) {
+            state--;
+            updateBook();
+        }
+    }
+}
+
+bookScene.addEventListener("click", function(event) {
+    if (scale > 1) return;
+    const bookRect = book.getBoundingClientRect();
+    const bookCenter = bookRect.left + bookRect.width / 2;
+    
+    if (event.clientX >= bookCenter) {
+        if (state < totalPages) { state++; updateBook(); }
+    } else {
+        if (state > 0) { state--; updateBook(); }
+    }
+});
+
+nextBtn.addEventListener("click", function(event) {
+    event.stopPropagation();
+    if (state < totalPages) { state++; updateBook(); }
+});
+
+prevBtn.addEventListener("click", function(event) {
+    event.stopPropagation();
+    if (state > 0) { state--; updateBook(); }
+});
+
+const dust = document.getElementById("dust");
+for (let i = 0; i < 35; i++) {
+    const particle = document.createElement("div");
+    particle.className = "dust-particle";
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = (50 + Math.random() * 50) + "%";
+    particle.style.animationDuration = (6 + Math.random() * 10) + "s";
+    particle.style.animationDelay = (-Math.random() * 12) + "s";
+    particle.style.opacity = 0.2 + Math.random() * 0.5;
+    const size = 1 + Math.random() * 2;
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+    dust.appendChild(particle);
+}
+
+bookScene.addEventListener("contextmenu", event => event.preventDefault());
+</script>
+
+</body>
+</html>
