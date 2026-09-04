@@ -23,7 +23,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    position: fixed; /* Prevents elastic bounce scrolling on mobile */
+    position: fixed;
 }
 
 body {
@@ -392,8 +392,8 @@ body {
 
 .chapter p {
     font-family: "IM Fell English", serif;
-    font-size: 13.5px;
-    line-height: 1.4;
+    font-size: 13px;
+    line-height: 1.35;
     color: #3b2a18;
 }
 
@@ -499,29 +499,6 @@ body {
     text-shadow: 1px 1px 0 #5d421d;
     padding: 0 10px;
 }
-
-/* Leaf fragments scaled down for mobile */
-.leaf-fragment {
-    position: absolute;
-    opacity: 0.6;
-    pointer-events: none;
-    z-index: 12;
-    border-radius: 70% 10% 70% 10%;
-}
-.leaf-1 { bottom: 15px; right: 20px; transform: rotate(42deg) scale(0.8); width: 15px; height: 7px; background: #4a331c; }
-.leaf-2 { top: 15px; left: 25px; transform: rotate(-55deg) scale(0.7); width: 18px; height: 8px; background: #332212; }
-.leaf-3 { bottom: 20px; left: 20px; transform: rotate(18deg) scale(0.8); width: 12px; height: 6px; background: #52391d; }
-.leaf-4 { top: 20px; right: 25px; transform: rotate(-25deg) scale(0.8); width: 14px; height: 7px; background: #3d2a15; }
-
-.twig {
-    position: absolute;
-    pointer-events: none;
-    z-index: 11;
-    opacity: 0.5;
-}
-.twig-1 { bottom: 10px; left: 20%; transform: rotate(-12deg); width: 60px; height: 25px; }
-.twig-2 { top: 15px; right: 15%; transform: rotate(35deg) scaleX(-1); width: 55px; height: 20px; }
-.twig-3 { bottom: 20px; right: 20%; transform: rotate(145deg); width: 50px; height: 20px; }
 </style>
 </head>
 
@@ -548,8 +525,8 @@ body {
 <div class="stage">
     <!-- Bottom Guide Box for Mobile -->
     <div class="guide-box">
-        <div class="guide-box-header"><span>✦</span> Navigation Guide</div>
-        <div class="guide-box-line">Swipe left / right or use buttons to turn pages</div>
+        <div class="guide-box-header"><span>✦</span> Practical Notebook Guide</div>
+        <div class="guide-box-line">Left pages blank • Right pages info • Swipe to turn</div>
     </div>
 
     <!-- Atmosphere -->
@@ -565,7 +542,7 @@ body {
                 <div class="page-block"></div>
                 <div class="spine"></div>
 
-                <!-- SHEET 0: Front Cover & Chapter I -->
+                <!-- SHEET 0: Front Cover (Right) & Blank Left -->
                 <div class="sheet" id="sheet0">
                     <div class="front-cover fade-text">
                         <div class="cover-inner">
@@ -581,8 +558,12 @@ body {
                             </div>
                         </div>
                     </div>
-                    <div class="face back">
-                        <div class="leaf-fragment leaf-3"></div>
+                    <div class="face back"></div>
+                </div>
+
+                <!-- SHEET 1: Blank Left | Chapter I (Right) -->
+                <div class="sheet" id="sheet1">
+                    <div class="face">
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER I — THE FIRST SEAL</div>
                             <h2>The Nameless Spark</h2>
@@ -593,12 +574,12 @@ body {
                             </p>
                         </div>
                     </div>
+                    <div class="face back"></div>
                 </div>
 
-                <!-- SHEET 1: Chapters II & III -->
-                <div class="sheet" id="sheet1">
+                <!-- SHEET 2: Blank Left | Chapter II (Right) -->
+                <div class="sheet" id="sheet2">
                     <div class="face">
-                        <div class="leaf-fragment leaf-2"></div>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER II — THE SHARED FLAME</div>
                             <h2>The Unseen Echo</h2>
@@ -609,8 +590,12 @@ body {
                             </p>
                         </div>
                     </div>
-                    <div class="face back">
-                        <div class="leaf-fragment leaf-3"></div>
+                    <div class="face back"></div>
+                </div>
+
+                <!-- SHEET 3: Blank Left | Chapter III (Right) -->
+                <div class="sheet" id="sheet3">
+                    <div class="face">
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER III — THE HIDDEN DOOR</div>
                             <h2>The Unshakable Wall</h2>
@@ -621,12 +606,12 @@ body {
                             </p>
                         </div>
                     </div>
+                    <div class="face back"></div>
                 </div>
 
-                <!-- SHEET 2: Chapters IV & V -->
-                <div class="sheet" id="sheet2">
+                <!-- SHEET 4: Blank Left | Chapter IV (Right) -->
+                <div class="sheet" id="sheet4">
                     <div class="face">
-                        <div class="leaf-fragment leaf-4"></div>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER IV — THE ANCIENT WORDS</div>
                             <h2>The Timeless Mirror</h2>
@@ -637,8 +622,12 @@ body {
                             </p>
                         </div>
                     </div>
-                    <div class="face back">
-                        <div class="leaf-fragment leaf-1"></div>
+                    <div class="face back"></div>
+                </div>
+
+                <!-- SHEET 5: Blank Left | Chapter V (Right) -->
+                <div class="sheet" id="sheet5">
+                    <div class="face">
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER V — THE GATHERING</div>
                             <h2>The Carved Runes</h2>
@@ -649,12 +638,12 @@ body {
                             </p>
                         </div>
                     </div>
+                    <div class="face back"></div>
                 </div>
 
-                <!-- SHEET 3: Chapters VI & VII -->
-                <div class="sheet" id="sheet3">
+                <!-- SHEET 6: Blank Left | Chapter VI (Right) -->
+                <div class="sheet" id="sheet6">
                     <div class="face">
-                        <div class="leaf-fragment leaf-2"></div>
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER VI — THE SPELLBOOK</div>
                             <h2>The Endless Flame</h2>
@@ -665,8 +654,12 @@ body {
                             </p>
                         </div>
                     </div>
-                    <div class="face back">
-                        <div class="leaf-fragment leaf-3"></div>
+                    <div class="face back"></div>
+                </div>
+
+                <!-- SHEET 7: Blank Left | Chapter VII (Right) -->
+                <div class="sheet" id="sheet7">
+                    <div class="face">
                         <div class="chapter fade-text">
                             <div class="chapter-label">CHAPTER VII — THE LAST INCANTATION</div>
                             <h2>The Absolute Anchor</h2>
@@ -677,29 +670,33 @@ body {
                             </p>
                         </div>
                     </div>
+                    <div class="face back"></div>
                 </div>
 
-                <!-- SHEET 4: Hint Section (Parts 1 & 2) -->
-                <div class="sheet" id="sheet4">
+                <!-- SHEET 8: Blank Left | Hint Section Part I (Right) -->
+                <div class="sheet" id="sheet8">
                     <div class="face">
-                        <div class="leaf-fragment leaf-1"></div>
                         <div class="chapter fade-text" style="text-align: left;">
                             <div class="chapter-label" style="text-align: center;">HINT SECTION — PART I</div>
-                            <h2 style="font-size: 14px; margin-bottom: 4px; text-align: center;">The Seeker's Clues</h2>
+                            <h2 style="font-size: 15px; margin-bottom: 4px; text-align: center;">The Seeker's Clues</h2>
                             <div class="ornament" style="margin: 2px 0; text-align: center;">✦ ✧ ✦</div>
                             <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
-                                <li style="margin-bottom: 4px;"><strong>1.</strong> Think of a tiny golden flower whose magic belonged to more than one.</li>
-                                <li style="margin-bottom: 4px;"><strong>2.</strong> Think of two people beneath a sky filled with glowing lanterns.</li>
-                                <li style="margin-bottom: 4px;"><strong>3.</strong> Think of a girl behind four walls discovering the real world.</li>
-                                <li style="margin-bottom: 4px;"><strong>4.</strong> Look beyond the long hair and crown to the girl beneath.</li>
+                                <li style="margin-bottom: 5px;"><strong>1.</strong> Think of a tiny golden flower whose magic belonged to more than one.</li>
+                                <li style="margin-bottom: 5px;"><strong>2.</strong> Think of two people beneath a sky filled with glowing lanterns.</li>
+                                <li style="margin-bottom: 5px;"><strong>3.</strong> Think of a girl behind four walls discovering the real world.</li>
+                                <li style="margin-bottom: 5px;"><strong>4.</strong> Look beyond the long hair and crown to the girl beneath.</li>
                             </ul>
                         </div>
                     </div>
-                    <div class="face back">
-                        <div class="leaf-fragment leaf-2"></div>
+                    <div class="face back"></div>
+                </div>
+
+                <!-- SHEET 9: Blank Left | Hint Section Part II (Right) -->
+                <div class="sheet" id="sheet9">
+                    <div class="face">
                         <div class="chapter fade-text" style="text-align: left;">
                             <div class="chapter-label" style="text-align: center;">HINT SECTION — PART II</div>
-                            <h2 style="font-size: 14px; margin-bottom: 4px; text-align: center;">The Journey Ahead</h2>
+                            <h2 style="font-size: 15px; margin-bottom: 4px; text-align: center;">The Journey Ahead</h2>
                             <div class="ornament" style="margin: 2px 0; text-align: center;">✧ ◆ ✧</div>
                             <ul style="font-family: 'IM Fell English', serif; font-size: 12px; line-height: 1.35; padding-left: 12px; color: #3b2a18;">
                                 <li style="margin-bottom: 6px;"><strong>5.</strong> Think of the road from the tower to the kingdom and every lesson learned.</li>
@@ -708,12 +705,12 @@ body {
                             </ul>
                         </div>
                     </div>
+                    <div class="face back"></div>
                 </div>
 
-                <!-- SHEET 5: EPILOGUE & BACK COVER -->
-                <div class="sheet" id="sheet5">
+                <!-- SHEET 10: Blank Left | Epilogue (Right) -->
+                <div class="sheet" id="sheet10">
                     <div class="face">
-                        <div class="leaf-fragment leaf-4"></div>
                         <div class="chapter fade-text">
                             <div class="chapter-label">EPILOGUE</div>
                             <h2 style="font-size: 15px; margin-bottom: 4px;">Until We Meet Again</h2>
@@ -778,7 +775,12 @@ const sheets = [
     document.getElementById("sheet2"),
     document.getElementById("sheet3"),
     document.getElementById("sheet4"),
-    document.getElementById("sheet5")
+    document.getElementById("sheet5"),
+    document.getElementById("sheet6"),
+    document.getElementById("sheet7"),
+    document.getElementById("sheet8"),
+    document.getElementById("sheet9"),
+    document.getElementById("sheet10")
 ];
 
 const totalPages = sheets.length;
@@ -844,16 +846,14 @@ bookScene.addEventListener("touchend", function(event) {
 }, { passive: true });
 
 function handleSwipe() {
-    const swipeThreshold = 40; // minimum distance for swipe
+    const swipeThreshold = 40;
     if (touchEndX < touchStartX - swipeThreshold) {
-        // Swiped Left -> Next Page
         if (state < totalPages) {
             state++;
             updateBook();
         }
     }
     if (touchEndX > touchStartX + swipeThreshold) {
-        // Swiped Right -> Previous Page
         if (state > 0) {
             state--;
             updateBook();
@@ -861,7 +861,6 @@ function handleSwipe() {
     }
 }
 
-// Fallback click to turn page if tapped directly on edges without swiping
 bookScene.addEventListener("click", function(event) {
     const bookRect = book.getBoundingClientRect();
     const bookCenter = bookRect.left + bookRect.width / 2;
